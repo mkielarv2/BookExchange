@@ -1,4 +1,4 @@
-# Book Exchange
+# BookswApp
 Book exchange service for reading enthusiasts
 <br/>
 <br/>
