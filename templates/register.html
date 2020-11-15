@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Register</title>
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light pt-3">
+            <a class="navbar-brand d-lg-none" href="/"><img class="img-fluid" src="https://via.placeholder.com/150x75"
+                                                            alt="logo" width="150"></a>
+            <div id="navbarContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav mx-auto align-items-center">
+                    <li class="nav-item mx-3 d-none d-lg-flex">
+                        <a class="navbar-brand" href="/"><img class="img-fluid" src="https://via.placeholder.com/150x75"
+                                                              alt="logo" width="150"></a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a href="{% url 'index' %}" class="nav-link font-weight-bold text-uppercase">Main page</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a href="{% url 'register' %}" class="nav-link font-weight-bold text-uppercase">Register</a>
+                    </li>
+                </ul>
+            </div>
+            <button class="navbar-toggler align-self-end" type="button" data-toggle="collapse"
+                    data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+        <main class="container-fluid">
+            <div class="row justify-content-center" style="margin-top: 35px;">
+                <section class="col-xl-4 col-lg-9 col-md-12 col-sm-12">
+                    <div class="card-deck col-12">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="usernameField">Username</label>
+                                        <input type="text" class="form-control" id="usernameField"
+                                               aria-describedby="usernameHelp" placeholder="Enter username"/>
+                                        <small id="usernameHelp" class="form-text text-muted">Your username will be
+                                            publicly visible</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="emailField">Email address</label>
+                                        <input type="email" class="form-control" id="emailField"
+                                               aria-describedby="emailHelp" placeholder="Enter email">
+                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email
+                                            with
+                                            anyone else.</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="passwordField">Password</label>
+                                        <input type="password" class="form-control" id="passwordField"
+                                               placeholder="Password">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <footer>
+            <div class="w-100 pt-3" style="height: 50px;">
+                <p style="margin-right: 40px; color: darkgray; float: right;">Insert something here</p>
+            </div>
+        </footer>
+    </body>
+</html>
