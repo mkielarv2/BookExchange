@@ -6,11 +6,151 @@
         <title>BookswApp</title>
 
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            .card-img-top {
+                flex-grow: 1;
+                object-fit: contain;
+            }
+
+            .card-body {
+                flex-grow: 0;
+            }
+
+            .bottom-buffer {
+                margin-top: 35px;
+            }
+        </style>
 
         <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
     </head>
-    <body class="container-fluid">
-        <h1 class="button">Welcome</h1>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light pt-3">
+            <a class="navbar-brand d-lg-none" href="/"><img class="img-fluid" src="https://via.placeholder.com/150x75"
+                                                            alt="logo" width="150"></a>
+            <div id="navbarContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav mx-auto align-items-center">
+                    <li class="nav-item mx-3 d-none d-lg-flex">
+                        <a class="navbar-brand" href="/"><img class="img-fluid" src="https://via.placeholder.com/150x75"
+                                                              alt="logo" width="150"></a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a href="/" class="nav-link font-weight-bold text-uppercase">Main page</a>
+                    </li>
+                    <li class="nav-item mx-3">
+                        <a href="/" class="nav-link font-weight-bold text-uppercase">Register</a>
+                    </li>
+                </ul>
+            </div>
+            <button class="navbar-toggler align-self-end" type="button" data-toggle="collapse"
+                    data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+        <main class="container-fluid">
+            <div class="row justify-content-center">
+                <section class="col-xl-8 col-lg-9 col-md-12 col-sm-12">
+                    <div class="justify-content-center align-items-center">
+                        <div class="w-100 pt-3"></div>
+                        <h1 class="text-center text-uppercase">Offers</h1>
+                        <br>
+                        <div class="row">
+                            <div class="card-deck col bottom-buffer">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="https://via.placeholder.com/600x500" class="card-img-top">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <a href="/">Lalka</a>
+                                        </h4>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Autor: Bolesław Prus</li>
+                                        <li class="list-group-item">Wydanie: 1890</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-deck col bottom-buffer">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="https://via.placeholder.com/600x500" class="card-img-top">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <a href="/">Zbrodnia i kara</a>
+                                        </h4>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Autor: Fiodor Dostojewski</li>
+                                        <li class="list-group-item">Wydanie: 1887</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-deck col bottom-buffer">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="https://via.placeholder.com/600x500" class="card-img-top">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <a href="/">Chłopi</a>
+                                        </h4>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Autor: Władysław Reymont</li>
+                                        <li class="list-group-item">Wydanie: 1904</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-deck col bottom-buffer">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="https://via.placeholder.com/600x500" class="card-img-top">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <a href="/">Krzyżacy</a>
+                                        </h4>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Autor: Henryk Sienkiewicz</li>
+                                        <li class="list-group-item">Wydanie: 1901</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-deck col bottom-buffer">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="https://via.placeholder.com/600x500" class="card-img-top">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <a href="/">Dziady część III</a>
+                                        </h4>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Autor: Adam Mickiewicz</li>
+                                        <li class="list-group-item">Wydanie: 1845</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-deck col bottom-buffer">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="https://via.placeholder.com/600x500" class="card-img-top">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <a href="/">Antygona</a>
+                                        </h4>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Autor: Sofokles</li>
+                                        <li class="list-group-item">Wydanie: 1993</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <footer>
+            <div class="w-100 pt-3" style="height: 50px;">
+                <p style="margin-right: 40px; color: darkgray; float: right;">Insert something here</p>
+            </div>
+        </footer>
     </body>
 </html>
