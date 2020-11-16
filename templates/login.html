@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Register</title>
+        <title>Login</title>
 
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 
@@ -38,32 +38,21 @@
         </nav>
         <main class="container-fluid">
             <div class="row justify-content-center" style="margin-top: 35px;">
-                <section class="col-xl-4 col-lg-9 col-md-12 col-sm-12">
+                <section class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
                     <div class="card-deck col-12">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
                                 <form>
                                     <div class="form-group">
                                         <label for="usernameField">Username</label>
-                                        <input type="text" class="form-control" id="usernameField"
-                                               aria-describedby="usernameHelp" placeholder="Enter username"/>
-                                        <small id="usernameHelp" class="form-text text-muted">Your username will be
-                                            publicly visible</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="emailField">Email address</label>
-                                        <input type="email" class="form-control" id="emailField"
-                                               aria-describedby="emailHelp" placeholder="Enter email">
-                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email
-                                            with
-                                            anyone else.</small>
+                                        <input type="text" class="form-control" id="usernameField" placeholder="Enter username"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="passwordField">Password</label>
                                         <input type="password" class="form-control" id="passwordField"
                                                placeholder="Password">
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                    <button type="submit" class="btn btn-primary btn-block">Login</button>
                                 </form>
                             </div>
                         </div>

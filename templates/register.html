@@ -3,10 +3,11 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title>Register</title>
 
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -25,7 +26,7 @@
                         <a href="{% url 'index' %}" class="nav-link font-weight-bold text-uppercase">Main page</a>
                     </li>
                     <li class="nav-item mx-3">
-                        <a href="{% url 'register' %}" class="nav-link font-weight-bold text-uppercase">Register</a>
+                        <a href="{% url 'login' %}" class="nav-link font-weight-bold text-uppercase">Login</a>
                     </li>
                 </ul>
             </div>
@@ -37,7 +38,7 @@
         </nav>
         <main class="container-fluid">
             <div class="row justify-content-center" style="margin-top: 35px;">
-                <section class="col-xl-4 col-lg-9 col-md-12 col-sm-12">
+                <section class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
                     <div class="card-deck col-12">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
@@ -62,7 +63,7 @@
                                         <input type="password" class="form-control" id="passwordField"
                                                placeholder="Password">
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                    <button type="submit" class="btn btn-primary btn-block">Register</button>
                                 </form>
                             </div>
                         </div>
@@ -70,7 +71,7 @@
                 </section>
             </div>
         </main>
-        <footer>
+        <footer class="fixed-bottom">
             <div class="w-100 pt-3" style="height: 50px;">
                 <p style="margin-right: 40px; color: darkgray; float: right;">Insert something here</p>
             </div>
