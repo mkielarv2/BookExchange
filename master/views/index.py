@@ -1,5 +1,4 @@
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.template import loader
 
 
@@ -18,14 +17,3 @@ def index(request):
         'offers': offers,
     }
     return HttpResponse(template.render(context, request))
-
-    # return render(request, 'index.html')
-    # return HttpResponse("The D is silent.")
-
-
-def register(request):
-    return render(request, 'register.html')
-
-
-def login(request):
-    return render(request, 'login.html')

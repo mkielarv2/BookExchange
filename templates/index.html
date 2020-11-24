@@ -63,8 +63,9 @@
                 flex-grow: 0;
             }
 
-            .bottom-buffer {
-                margin-top: 35px;
+            .row > div[class*='col-'] {
+                display: flex;
+                flex: 1 0 auto;
             }
         </style>
 
@@ -72,7 +73,7 @@
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
     </head>
     <body>
-        <div class="d-flex toggled" id="wrapper">
+        <div class="d-flex" id="wrapper">
             <div class="bg-light border-right" id="sidebar-wrapper">
                 <div class="sidebar-heading">BookswApp</div>
                 <div class="list-group list-group-flush">
@@ -83,7 +84,7 @@
             </div>
             <div id="page-content-wrapper">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                    <button class="btn btn-primary" id="menu-toggle">Menu</button>
+                    {#                    <button class="btn btn-primary" id="menu-toggle">Menu</button>#}
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -97,33 +98,28 @@
                         </ul>
                     </div>
                 </nav>
-                <div class="container-fluid" style="margin-top: 15px">
-                    <div class="card-columns">
-                        {% for offer in offers %}
-                            <div class="card">
-                                <img src="https://via.placeholder.com/600x500"
-                                     class="card-img-top">
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="/">{{ offer.0 }}</a>
-                                    </h4>
+                <div class="container-fluid" style="margin-top: 15px;">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="card-deck">
+                            {% for offer in offers %}
+                                <div class="card col-xl-2 col-lg-3 col-md-4 col-md-12">
+                                    <img src="https://via.placeholder.com/600x500"
+                                         class="card-img-top">
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <a href="/">{{ offer.0 }}</a>
+                                        </h4>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Autor: {{ offer.1 }}</li>
+                                        <li class="list-group-item">Wydanie: {{ offer.2 }}</li>
+                                    </ul>
                                 </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Autor: {{ offer.1 }}</li>
-                                    <li class="list-group-item">Wydanie: {{ offer.2 }}</li>
-                                </ul>
-                            </div>
-                        {% endfor %}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-        <script>
-            $("#menu-toggle").click(function (e) {
-                e.preventDefault();
-                $("#wrapper").toggleClass("toggled");
-            });
-        </script>
     </body>
 </html>
