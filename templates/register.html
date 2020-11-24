@@ -86,7 +86,7 @@
                 <div class="container-fluid">
                     <div class="row justify-content-center" style="margin-top: 35px;">
                         <section class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-                            <div class="card-deck col-12">
+                            <div class="card-deck col-12" id="container">
                                 <div class="card">
                                     <div class="card-body">
                                         <form>
@@ -187,8 +187,7 @@
                     },
                     dataType: 'json',
                     success: function(data) {
-                        console.log(data);
-                        button.html('Submit');
+                        $("#container").html('<div class="card border-success" id="formCard">\n    <div class="card-body">\n        <div class="card-body text-success">\n            <h5 class="card-title">Success</h5>\n            <p class="card-text">Registration completed successfully!</p>\n            <a href="{% url 'login' %}"><button type="button" class="btn btn-primary btn-block">Login</button></a>\n        </div>\n    </div>\n</div>')
                     },
                     error: function(data) {
                         let err = JSON.parse(data.responseText);

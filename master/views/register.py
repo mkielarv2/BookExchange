@@ -1,6 +1,7 @@
 import json
 import re
 
+from argon2 import PasswordHasher
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -37,6 +38,9 @@ def create(request):
             return HttpResponse(json.dumps({"cause": "usernameField", "desc": "Username already taken."}), status=422)
 
         # TODO check password
+
+        ph = PasswordHasher()
+        password = ph.hash(password)
 
         user = Users.objects.create(email=email, username=username, password=password)
         user.save()
