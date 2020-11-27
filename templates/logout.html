@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row justify-content-center" style="margin-top: 35px;">
+        <section class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+            <div class="card-deck col-12" id="container">
+                <div class="card border-success" id="formCard">
+                    <div class="card-body">
+                        <div class="card-body text-success">
+                            <h5 class="card-title">Logged out</h5>
+                            <p class="card-text">See you later!</p>
+                            <a href="{% url 'index' %}">
+                                <button type="button" class="btn btn-primary btn-block">Home</button>
+                            </a>
+                            <a href="{% url 'login' %}" style="margin-top: 15px">
+                                <button type="button" class="btn btn-primary btn-block" style="margin-top: 15px">Login</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

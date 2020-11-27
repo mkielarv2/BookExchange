@@ -9,14 +9,14 @@
                         <form method="post">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="usernameField">Username</label>
-                                <input type="text" class="form-control" id="usernameField" name="username" placeholder="Enter username"/>
+                                <label for="newPasswordField">Password</label>
+                                <input type="password" name="password" class="form-control" id="newPasswordField" placeholder="New password">
+                                <div id="newPasswordFeedback" class="invalid-feedback"></div>
                             </div>
                             <div class="form-group">
-                                <label for="passwordField">Password</label>
-                                <input type="password" name="password" class="form-control" id="passwordField"
-                                       placeholder="Password">
-                                <div class="invalid-feedback"></div>
+                                <label for="repeatNewPasswordField">Password</label>
+                                <input type="password" name="password" class="form-control" id="repeatNewPasswordField" placeholder="Repeat new password">
+                                <div id="repeatNewPasswordFeedback" class="invalid-feedback">Passwords does not match.</div>
                             </div>
                             <button id="submit" type="submit" value="Login" class="btn btn-primary btn-block">Login</button>
                         </form>
@@ -29,18 +29,32 @@
 
 {% block script %}
     <script>
+        $('#newPasswordField, #repeatNewPasswordField').on('keyup', function() {
+            $(this).removeClass('is-invalid');
+
+            let passwordField = $('#newPasswordField');
+            let repeatPasswordField = $('#repeatNewPasswordField');
+            let submit = $('#submit-button');
+
+            if (passwordField.val() === repeatPasswordField.val()) {
+                submit.removeAttr('disabled');
+                repeatPasswordField.removeClass('is-invalid');
+            } else {
+                submit.attr('disabled', 'disabled');
+                repeatPasswordField.addClass('is-invalid');
+            }
+        });
+
         $('#submit').click(function(e) {
             e.preventDefault();
 
             let button = $(this);
             button.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
 
-            let usernameField = $('#usernameField');
-            let passwordField = $('#passwordField');
+            let newPasswordField = $('#newPasswordField');
 
             let payload = {
-                username: usernameField.val(),
-                password: passwordField.val(),
+                newPassword: newPasswordField.val()
             };
 
             $.ajax({
@@ -52,20 +66,15 @@
                 },
                 dataType: 'json',
                 success: function(data) {
-                    console.log(data.redirect);
-                    window.location = data.redirect;
+                    console.log(data);
                 },
                 error: function(data) {
                     let err = JSON.parse(data.responseText);
-                    $('.invalid-feedback').text(err.desc);
-                    $('#passwordField, #usernameField').addClass('is-invalid');
+                    $('#newPasswordFeedback').text(err.desc);
+                    $('#newPasswordField').addClass('is-invalid');
                     button.html('Submit');
                 },
             });
-        });
-
-        $('#usernameField, #passwordField').on('keyup', function() {
-            $('#usernameField, #passwordField').removeClass('is-invalid');
-        });
+        })
     </script>
 {% endblock %}
