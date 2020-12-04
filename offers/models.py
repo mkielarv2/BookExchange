@@ -1,5 +1,6 @@
 from django.contrib.auth import models as auth
 from django.db import models
+from rest_framework import serializers
 
 
 class Category(models.Model):
@@ -13,3 +14,9 @@ class Offers(models.Model):
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=50)
     description = models.TextField()
+
+
+class OffersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Offers
+        fields = '__all__'

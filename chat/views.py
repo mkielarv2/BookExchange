@@ -11,7 +11,19 @@ from rest_framework.permissions import IsAuthenticated
 from chat.models import MessagesSerializer, Messages, MessagesDeserializer, Comment, CommentSerializer, \
     CommentDeserializer
 from master.models import UserSerializer
-from offers.models import Offers
+from offers.models import Offers, OffersSerializer
+
+
+@api_view(['GET'])
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
+def get_chat_offers(request):
+    """Get offer that user has chat"""
+    user = request.user
+    offer_ids = Messages.objects.values('offer__id').filter(Q(sender=user) | Q(recipient=user)).distinct()
+    offers = Offers.objects.filter(id__in=offer_ids)
+    serializer = OffersSerializer(offers, many=True)
+    return JsonResponse(serializer.data, safe=False)
 
 
 @api_view(['GET'])
