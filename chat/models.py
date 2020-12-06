@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import models as auth
 from rest_framework import serializers
 
+from master.models import UserSerializer
 from offers.models import Offers
 
 
@@ -14,9 +15,11 @@ class Messages(models.Model):
 
 
 class MessagesSerializer(serializers.ModelSerializer):
+    sender = UserSerializer()
+
     class Meta:
         model = Messages
-        fields = '__all__'
+        fields = ('sender', 'message', 'sending_time')
 
 
 class MessagesDeserializer(serializers.ModelSerializer):
@@ -33,9 +36,11 @@ class Comment(models.Model):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    author = UserSerializer()
+
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = ('author', 'content', 'adding_time')
 
 
 class CommentDeserializer(serializers.ModelSerializer):

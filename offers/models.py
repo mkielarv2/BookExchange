@@ -2,6 +2,8 @@ from django.contrib.auth import models as auth
 from django.db import models
 from rest_framework import serializers
 
+from master.models import UserSerializer
+
 
 class Category(models.Model):
     name = models.CharField(max_length=25)
@@ -48,6 +50,11 @@ class Offers(models.Model):
 
 
 class OffersSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+    category = CategorySerializer()
+    condition = BookConditionSerializer()
+    location = LocalizationSerializer()
+
     class Meta:
         model = Offers
         fields = '__all__'
