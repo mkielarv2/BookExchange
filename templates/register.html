@@ -83,12 +83,9 @@
             };
 
             $.ajax({
-                url: '',
+                url: '{% url 'apiRegister' %}',
                 type: 'POST',
-                data: {
-                    csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
-                    payload: JSON.stringify(payload),
-                },
+                data: payload,
                 dataType: 'json',
                 success: function(data) {
                     $('#container')

@@ -1,15 +1,13 @@
 from django.contrib.auth import logout as authLogout
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import resolve_url
+from rest_framework import permissions
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
-def logout(request):
-    if request.method == 'GET':
+class Logout(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
         authLogout(request)
-        return render(request, "logout.html")
-    else:
-        return unsupportedMethod(request)
-
-
-def unsupportedMethod(request):
-    return HttpResponse(status=405)
+        return Response({"status": "success"}, status=200)

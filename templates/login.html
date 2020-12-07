@@ -44,12 +44,9 @@
             };
 
             $.ajax({
-                url: '',
+                url: '{% url 'apiLogin' %}',
                 type: 'POST',
-                data: {
-                    csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
-                    payload: JSON.stringify(payload),
-                },
+                data: payload,
                 dataType: 'json',
                 success: function(data) {
                     console.log(data.redirect);

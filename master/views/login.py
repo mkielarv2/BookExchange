@@ -1,51 +1,38 @@
-import json
-
 from django.conf import settings
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as authLogin
-from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import resolve_url, render
+from django.shortcuts import resolve_url
+from rest_framework import permissions
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
-def login(request):
-    if request.method == 'GET':
+class Login(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request):
         if request.user.is_authenticated:
-            return HttpResponseRedirect(resolve_url(settings.LOGIN_REDIRECT_URL))
-        return page(request)
-    elif request.method == 'POST':
-        return authorize(request)
-    else:
-        return unsupportedMethod(request)
+            return Response({"status": "failure", "redirect": resolve_url(settings.LOGIN_REDIRECT_URL)}, status=422)
 
+        payload = request.data
 
-def page(request):
-    return render(request, "login.html")
+        username = payload["username"]
+        password = payload["password"]
 
+        user = authenticate(request, username=username, password=password)
 
-def authorize(request):
-    payload = json.loads(request.POST["payload"])
+        if user is None:
+            responsePayload = {
+                "status": "failure",
+                "cause": "credentials",
+                "desc": "Invalid user or password."
+            }
+            return Response(responsePayload, status=401)
 
-    username = payload["username"]
-    password = payload["password"]
+        authLogin(request, user)
 
-    user = authenticate(request, username=username, password=password)
-
-    if user is None:
         responsePayload = {
-            "status": "failure",
-            "cause": "credentials",
-            "desc": "Invalid user or password."
+            "status": "success",
+            "redirect": resolve_url(settings.LOGIN_REDIRECT_URL)
         }
-        return HttpResponse(json.dumps(responsePayload), status=401)
-
-    authLogin(request, user)
-
-    responsePayload = {
-        "status": "success",
-        "redirect": resolve_url(settings.LOGIN_REDIRECT_URL)
-    }
-    return HttpResponse(json.dumps(responsePayload), status=200)
-
-
-def unsupportedMethod(request):
-    return HttpResponse(status=405)
+        return Response(responsePayload, status=200)
