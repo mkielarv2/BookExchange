@@ -42,8 +42,6 @@ class Offers(models.Model):
     title = models.CharField(max_length=50)
     author = models.CharField(max_length=50)
     description = models.TextField()
-    rating = models.FloatField()
-    rating_count = models.IntegerField()
     condition = models.ForeignKey(BookCondition, on_delete=models.CASCADE)
     location = models.ForeignKey(Localization, on_delete=models.CASCADE)
     is_deleted = models.BooleanField(default=False)

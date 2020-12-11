@@ -46,12 +46,12 @@ def send_message(request):
     """Send message"""
     deserializer = MessagesDeserializer(data=json.loads(request.POST['payload']))
     if not deserializer.is_valid():
-        return HttpResponse({'status': 'failure', 'cause': 'deserializerError', 'desc': deserializer.errors}, status=422)
+        return HttpResponse("{'status': 'failure', 'cause': 'deserializerError', 'desc': deserializer.errors}", status=422)
     message = deserializer.save(sender=request.user, sending_time=datetime.now())
     if message.sender != message.offer.user and message.recipient != message.offer.user:
         message.delete()
-        return HttpResponse({'status': 'failure', 'desc': 'none of users is offer owner'}, status=422)
-    return HttpResponse({'status': 'success'}, status=201)
+        return HttpResponse("{'status': 'failure', 'desc': 'none of users is offer owner'}", status=422)
+    return HttpResponse("{'status': 'success'}", status=201)
 
 
 @api_view(['GET'])
@@ -82,9 +82,9 @@ def add_comment(request):
     """Add comment about user"""
     deserializer = CommentDeserializer(data=json.loads(request.POST['payload']))
     if not deserializer.is_valid():
-        return HttpResponse({'status': 'failure', 'cause': 'deserializerError', 'desc': deserializer.errors}, status=422)
+        return HttpResponse("{'status': 'failure', 'cause': 'deserializerError', 'desc': deserializer.errors}", status=422)
     deserializer.save(author=request.user, adding_time=datetime.now())
-    return HttpResponse({'status': 'success'}, status=201)
+    return HttpResponse("{'status': 'success'}", status=201)
 
 
 @api_view(['DELETE'])
@@ -94,6 +94,6 @@ def delete_comment(request, comment_id):
     """Delete comment"""
     comment = get_object_or_404(Comment, pk=comment_id)
     if comment.user != request.user:
-        return HttpResponseForbidden({'status': 'failure'})
+        return HttpResponseForbidden("{'status': 'failure'}")
     comment.delete()
     return HttpResponse("{'status': 'success'}", status=200)
