@@ -8,6 +8,9 @@ from master.models import UserSerializer
 class Category(models.Model):
     name = models.CharField(max_length=25)
 
+    def __str__(self):
+        return self.name
+
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -18,6 +21,9 @@ class CategorySerializer(serializers.ModelSerializer):
 class BookCondition(models.Model):
     condition = models.CharField(max_length=16)
 
+    def __str__(self):
+        return self.condition
+
 
 class BookConditionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,6 +33,9 @@ class BookConditionSerializer(serializers.ModelSerializer):
 
 class Localization(models.Model):
     name = models.CharField(max_length=25)
+
+    def __str__(self):
+        return self.name
 
 
 class LocalizationSerializer(serializers.ModelSerializer):
@@ -45,6 +54,9 @@ class Offers(models.Model):
     condition = models.ForeignKey(BookCondition, on_delete=models.CASCADE)
     location = models.ForeignKey(Localization, on_delete=models.CASCADE)
     is_deleted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
 
 
 class OffersSerializer(serializers.ModelSerializer):
