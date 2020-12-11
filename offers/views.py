@@ -5,7 +5,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 
 from offers.models import Category, CategorySerializer, Localization, LocalizationSerializer, BookCondition, \
-    BookConditionSerializer, Offers
+    BookConditionSerializer, Offers, OffersSerializer
 
 
 def get_all_objects(model, serializer):
@@ -43,3 +43,11 @@ def delete_offer(request, offer_id):
     offer.is_deleted = True
     offer.save()
     return HttpResponse("{'status': 'success'}", status=200)
+
+
+@api_view(['GET'])
+def get_offer(request, offer_id):
+    """Get details of offer"""
+    offer = get_object_or_404(Offers, pk=offer_id)
+    serializer = OffersSerializer(offer)
+    return JsonResponse(serializer.data, safe=False)
