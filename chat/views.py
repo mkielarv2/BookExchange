@@ -2,10 +2,11 @@ import json
 
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.http import JsonResponse, HttpResponseBadRequest, HttpResponse
+from django.http import JsonResponse, HttpResponse, HttpResponseForbidden
 from django.utils.datetime_safe import datetime
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 
 from chat.models import MessagesSerializer, Messages, MessagesDeserializer, Comment, CommentSerializer, \
@@ -45,12 +46,12 @@ def send_message(request):
     """Send message"""
     deserializer = MessagesDeserializer(data=json.loads(request.POST['payload']))
     if not deserializer.is_valid():
-        return HttpResponseBadRequest(json.dumps(deserializer.errors))
+        return HttpResponse({'status': 'failure', 'cause': 'deserializerError', 'desc': deserializer.errors}, status=422)
     message = deserializer.save(sender=request.user, sending_time=datetime.now())
     if message.sender != message.offer.user and message.recipient != message.offer.user:
         message.delete()
-        return HttpResponseBadRequest('One of users must be creator of the offer!')
-    return HttpResponse(status=200)
+        return HttpResponse({'status': 'failure', 'desc': 'none of users is offer owner'}, status=422)
+    return HttpResponse({'status': 'success'}, status=201)
 
 
 @api_view(['GET'])
@@ -81,6 +82,18 @@ def add_comment(request):
     """Add comment about user"""
     deserializer = CommentDeserializer(data=json.loads(request.POST['payload']))
     if not deserializer.is_valid():
-        return HttpResponseBadRequest(json.dumps(deserializer.errors))
+        return HttpResponse({'status': 'failure', 'cause': 'deserializerError', 'desc': deserializer.errors}, status=422)
     deserializer.save(author=request.user, adding_time=datetime.now())
-    return HttpResponse(status=200)
+    return HttpResponse({'status': 'success'}, status=201)
+
+
+@api_view(['DELETE'])
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
+def delete_comment(request, comment_id):
+    """Delete comment"""
+    comment = get_object_or_404(Comment, pk=comment_id)
+    if comment.user != request.user:
+        return HttpResponseForbidden({'status': 'failure'})
+    comment.delete()
+    return HttpResponse("{'status': 'success'}", status=200)

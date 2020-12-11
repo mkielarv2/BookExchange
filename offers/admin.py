@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Offers, Category, BookCondition, Localization
+
+admin.site.register(Offers)
+admin.site.register(Category)
+admin.site.register(BookCondition)
+admin.site.register(Localization)

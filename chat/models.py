@@ -19,7 +19,7 @@ class MessagesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Messages
-        fields = ('sender', 'message', 'sending_time')
+        fields = '__all__'
 
 
 class MessagesDeserializer(serializers.ModelSerializer):
@@ -40,7 +40,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ('author', 'content', 'adding_time')
+        fields = '__all__'
 
 
 class CommentDeserializer(serializers.ModelSerializer):

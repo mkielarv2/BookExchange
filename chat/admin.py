@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from chat.models import Comment, Messages
+
+admin.site.register(Comment)
+admin.site.register(Messages)

@@ -11,4 +11,5 @@ urlpatterns = [
     path('getChats/<int:offer_id>/<int:user_id>', views.get_messages, name='get_messages'),
     path('getComments/<int:user_id>', views.get_comments, name='get_comments'),
     path('comment', views.add_comment, name='add_comment'),
+    path('comment/<int:comment_id>', views.delete_comment, name='delete_comment'),
 ]
