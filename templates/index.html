@@ -1,4 +1,4 @@
-{%  extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block style %}
     <style>
@@ -15,27 +15,70 @@
             display: flex;
             flex: 1 0 auto;
         }
+
+        .card-deck {
+            margin-top: 25px;
+        }
     </style>
 {% endblock %}
 
 {% block content %}
-    <div class="row justify-content-center align-items-center">
-        <div class="card-deck">
-            {% for offer in offers %}
-                <div class="card col-xl-2 col-lg-3 col-md-4 col-md-12">
-                    <img src="https://via.placeholder.com/600x500"
-                         class="card-img-top">
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="/">{{ offer.title }}</a>
-                        </h4>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Autor: {{ offer.author }}</li>
-                        <li class="list-group-item">Wydanie: {{ offer.description }}</li>
-                    </ul>
-                </div>
-            {% endfor %}
-        </div>
-    </div>
+    <div id="container" class="row justify-content-center align-items-center" style="margin-bottom: 25px"></div>
 {% endblock %}
+
+{% block script %}
+    <script>
+        $.ajax({
+            url: '{% url 'offers:get_offers' %}',
+            type: 'GET',
+            success: function (data) {
+                for (let i = 0; i < data.size; i++) {
+                    var hyperlink = "/"
+                    var imgSrc = "https://via.placeholder.com/600x500"
+                    var title = "Title"
+                    var author = "Author"
+                    var description = "Description"
+
+                    // language=HTML
+                    var template = "<div class=\"card-deck col-xl-2 col-lg-3 col-md-4 col-md-12\">\n    <a class=\"card\">\n        <a href=\"" + hyperlink + "\">\n            <img src=\"" + imgSrc + "\" class=\"card-img-top\">\n        </a>\n        <div class=\"card-body\">\n            <h4 class=\"card-title\">\n                <a href=\"" + hyperlink + "\">" + title + "</a>\n            </h4>\n        </div>\n        <ul class=\"list-group list-group-flush\">\n            <li class=\"list-group-item\">Autor: " + author + "</li>\n            <li class=\"list-group-item\">Wydanie: " + description + "</li>\n        </ul>\n    </div>\n</div>"
+                }
+            },
+            error: function (data) {
+            },
+        });
+
+    </script>
+
+    {#<!-- w data-id potrzebne jest id produktu,#}
+    {#        żebym ajaxem wysłał zapytanko o wyświetlenie konkretnego produktu -->#}
+    {#        <div data-id="product-id">#}
+    {#            <div class="product_image">#}
+    {#                <!-- jeśli będzie kilka zdjęć, to wyświetlić tylko jedno z nich -->#}
+    {#                <img src="test.png" alt="">#}
+    {#            </div>#}
+    {#            <!-- wypisanie podstawowych info o danym listowaniu -->#}
+    {#            <div class="product_info">#}
+    {#                <div>Wacław Wawrzyniak</div>#}
+    {#                <div>Język polski</div>#}
+    {#                <div>Używana</div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <!-- rozdzielnik. super by było jakbyście dali go radę nie wyświetlać na końcu -->#}
+    {#        <br/>#}
+{% endblock %}
+
+{#<div class="card-deck col-xl-2 col-lg-3 col-md-4 col-md-12">#}
+{#                <div class="card">#}
+{#                    <img src="https://via.placeholder.com/600x500"#}
+{#                         class="card-img-top">#}
+{#                    <div class="card-body">#}
+{#                        <h4 class="card-title">#}
+{#                            <a href="/">{{ offer.title }}</a>#}
+{#                        </h4>#}
+{#                    </div>#}
+{#                    <ul class="list-group list-group-flush">#}
+{#                        <li class="list-group-item">Autor: {{ offer.author }}</li>#}
+{#                        <li class="list-group-item">Wydanie: {{ offer.description }}</li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#            </div>#}
