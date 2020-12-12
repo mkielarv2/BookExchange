@@ -8,7 +8,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 
 from offers.models import Category, CategorySerializer, Localization, LocalizationSerializer, BookCondition, \
-    BookConditionSerializer, Offers, OffersSerializer, OffersDeserializer, URL
+    BookConditionSerializer, Offers, OffersSerializer, OffersDeserializer, ImageURL
 
 
 def get_all_objects(model, serializer):
@@ -92,8 +92,9 @@ def create_offer(request):
     if deserializer.is_valid():
         offer = deserializer.save(date=timezone.now(), user=request.user)
         for file in request.FILES:
-            url = URL()
+            url = ImageURL()
             url.image = file
+            url.offer_id = offer.id
             url.save()
-        return HttpResponse(status=200)
-    return HttpResponse(status=400)
+        return HttpResponse('{"status": "success"}', status=200)
+    return HttpResponse('{"status": "failure"}', status=400)
