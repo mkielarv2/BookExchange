@@ -146,3 +146,7 @@ LOGIN_REDIRECT_URL = '/'
 ACCOUNT_ACTIVATION_DAYS = 7  # One-week activation window
 
 AUTHENTICATION_BACKENDS = ['djangoBookExchange.EmailBackend.EmailBackend']
+
+import django_heroku
+
+django_heroku.settings(locals())
