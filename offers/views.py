@@ -59,3 +59,22 @@ def get_user_offers(request, user_id):
     offers = Offers.objects.filter(is_deleted=False).filter(user__id=user_id)
     serializer = OffersSerializer(offers, many=True)
     return JsonResponse(serializer.data, safe=False)
+
+
+@api_view(['GET'])
+def get_offers(request):
+    """Get offers"""
+    filters = request.GET
+    offers = Offers.objects.filter(is_deleted=False)
+    if 'category' in filters:
+        offers = offers.filter(category__id=filters['category'])
+    if 'condition' in filters:
+        offers = offers.filter(conditon__id=filters['condition'])
+    if 'localization' in filters:
+        offers = offers.filter(localization__id=filters['localization'])
+    if 'author' in filters:
+        offers = offers.filter(author__contains=filters['author'])
+    if 'title' in filters:
+        offers = offers.filter(title__contains=filters['title'])
+    serializer = OffersSerializer(offers, many=True)
+    return JsonResponse(serializer.data, safe=False)
