@@ -78,3 +78,8 @@ def get_offers(request):
         offers = offers.filter(title__contains=filters['title'])
     serializer = OffersSerializer(offers, many=True)
     return JsonResponse(serializer.data, safe=False)
+
+
+def create_offer(request):
+    """Create offer"""
+    

@@ -19,7 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
 class UserDeserializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ()  # TODO
+        fields = ('email', 'username')
 
 
 class Rating(models.Model):
