@@ -51,3 +51,11 @@ def get_offer(request, offer_id):
     offer = get_object_or_404(Offers, pk=offer_id)
     serializer = OffersSerializer(offer)
     return JsonResponse(serializer.data, safe=False)
+
+
+@api_view(['GET'])
+def get_user_offers(request, user_id):
+    """Get offers of one user"""
+    offers = Offers.objects.filter(is_deleted=False).filter(user__id=user_id)
+    serializer = OffersSerializer(offers, many=True)
+    return JsonResponse(serializer.data, safe=False)
