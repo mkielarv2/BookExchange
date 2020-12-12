@@ -91,10 +91,11 @@ def create_offer(request):
     deserializer = OffersDeserializer(data=json.loads(request.POST['payload']))
     if deserializer.is_valid():
         offer = deserializer.save(date=timezone.now(), user=request.user)
-        for file in request.FILES:
-            url = ImageURL()
-            url.image = file
-            url.offer_id = offer.id
-            url.save()
+        for file_list in request.FILES:
+            for file in request.FILES.getlist(file_list):
+                url = ImageURL()
+                url.image = file
+                url.offer_id = offer
+                url.save()
         return HttpResponse('{"status": "success"}', status=200)
     return HttpResponse('{"status": "failure"}', status=400)

@@ -67,10 +67,10 @@ class OffersSerializer(serializers.ModelSerializer):
     location = LocalizationSerializer()
     images = serializers.SerializerMethodField('get_images')
 
-    def get_images(self, data):
+    @staticmethod
+    def get_images(data):
         images = ImageURL.objects.filter(offer_id=data.id)
-        serializer = ImageURLSerializer(images, many=True)
-        return serializer.data
+        return [str(image) for image in images]
 
     class Meta:
         model = Offers
@@ -87,8 +87,5 @@ class ImageURL(models.Model):
     offer_id = models.ForeignKey(Offers, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=settings.IMAGE_URL)
 
-
-class ImageURLSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ImageURL
-        fields = ('image',)
+    def __str__(self):
+        return str(self.image)
