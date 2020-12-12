@@ -5,3 +5,4 @@ from .logout import *
 from .change import *
 from .edit import *
 from .get import *
+from .rating import *

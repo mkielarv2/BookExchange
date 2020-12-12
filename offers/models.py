@@ -2,6 +2,7 @@ from django.contrib.auth import models as auth
 from django.db import models
 from rest_framework import serializers
 
+from djangoBookExchange import settings
 from master.models import UserSerializer
 
 
@@ -54,6 +55,7 @@ class Offers(models.Model):
     condition = models.ForeignKey(BookCondition, on_delete=models.CASCADE)
     location = models.ForeignKey(Localization, on_delete=models.CASCADE)
     is_deleted = models.BooleanField(default=False)
+    # image = models.ImageField(upload_to=settings.IMAGE_URL) TODO
 
     def __str__(self):
         return self.title

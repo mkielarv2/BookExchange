@@ -11,7 +11,7 @@ from master.models import UserDeserializer
 @permission_classes([IsAuthenticated])
 def edit_user(request):
     """Edit your account"""
-    serializer = UserDeserializer(request.data['payload'], instance=request.user)
+    serializer = UserDeserializer(data=json.loads(request.data['payload']), instance=request.user)
     if serializer.is_valid():
         serializer.save()
         return HttpResponse('{"status": "success"}', status=200)

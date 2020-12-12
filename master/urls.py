@@ -15,5 +15,7 @@ urlpatterns = [
     path('api/logout/', views.Logout.as_view(), name='apiLogout'),
     path('api/change/', views.Change.as_view(), name='apiChange'),
     path('api/edit', views.edit_user, name='apiEditUser'),
-    path('api/user/<int:user_id>', views.get_user, name='apiEditUser'),
+    path('api/user/<int:user_id>', views.get_user, name='apiGetUser'),
+    path('api/user/rate', views.rate, name='apiRateUser'),
+    path('api/user/rating/<int:user_id>', views.delete_rate, name='apiDeleteRating'),
 ]
