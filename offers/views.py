@@ -1,11 +1,14 @@
+import json
+
 from django.http import JsonResponse, HttpResponseForbidden, HttpResponse
+from django.utils import timezone
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 
 from offers.models import Category, CategorySerializer, Localization, LocalizationSerializer, BookCondition, \
-    BookConditionSerializer, Offers, OffersSerializer
+    BookConditionSerializer, Offers, OffersSerializer, OffersDeserializer, URL
 
 
 def get_all_objects(model, serializer):
@@ -80,6 +83,17 @@ def get_offers(request):
     return JsonResponse(serializer.data, safe=False)
 
 
+@api_view(['POST'])
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def create_offer(request):
     """Create offer"""
-    
+    deserializer = OffersDeserializer(data=json.loads(request.POST['payload']))
+    if deserializer.is_valid():
+        offer = deserializer.save(date=timezone.now(), user=request.user)
+        for file in request.FILES:
+            url = URL()
+            url.image = file
+            url.save()
+        return HttpResponse(status=200)
+    return HttpResponse(status=400)

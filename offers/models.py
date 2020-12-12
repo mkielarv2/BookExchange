@@ -80,7 +80,7 @@ class OffersSerializer(serializers.ModelSerializer):
 
 class OffersDeserializer(serializers.ModelSerializer):
     class Meta:
-        models = Offers
+        model = Offers
         fields = ('category', 'title', 'author', 'description', 'condition', 'location')
 
 
