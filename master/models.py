@@ -9,6 +9,12 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email')
 
 
+class UserDeserializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ()  # TODO
+
+
 class Rating(models.Model):
     rated_user = models.ForeignKey(User, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='rating_author')

@@ -14,4 +14,6 @@ urlpatterns = [
     path('api/login/', views.Login.as_view(), name='apiLogin'),
     path('api/logout/', views.Logout.as_view(), name='apiLogout'),
     path('api/change/', views.Change.as_view(), name='apiChange'),
+    path('api/edit', views.edit_user, name='apiEditUser'),
+    path('api/user/<int:user_id>', views.get_user, name='apiEditUser'),
 ]
