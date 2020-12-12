@@ -142,3 +142,5 @@ LOGIN_REDIRECT_URL = '/'
 # DJANGO-REGISTRATION
 
 ACCOUNT_ACTIVATION_DAYS = 7  # One-week activation window
+
+AUTHENTICATION_BACKENDS = ['djangoBookExchange.EmailBackend.EmailBackend']

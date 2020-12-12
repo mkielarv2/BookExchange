@@ -9,8 +9,8 @@
                         <form method="post">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="usernameField">Username</label>
-                                <input type="text" class="form-control" id="usernameField" name="username" placeholder="Enter username"/>
+                                <label for="emailField">Username</label>
+                                <input type="text" class="form-control" id="emailField" name="email" placeholder="Enter email"/>
                             </div>
                             <div class="form-group">
                                 <label for="passwordField">Password</label>
@@ -35,11 +35,11 @@
             let button = $(this);
             button.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
 
-            let usernameField = $('#usernameField');
+            let emailField = $('#emailField');
             let passwordField = $('#passwordField');
 
             let payload = {
-                username: usernameField.val(),
+                email: emailField.val(),
                 password: passwordField.val(),
             };
 
@@ -55,14 +55,14 @@
                 error: function(data) {
                     let err = JSON.parse(data.responseText);
                     $('.invalid-feedback').text(err.desc);
-                    $('#passwordField, #usernameField').addClass('is-invalid');
+                    $('#passwordField, #emailField').addClass('is-invalid');
                     button.html('Submit');
                 },
             });
         });
 
-        $('#usernameField, #passwordField').on('keyup', function() {
-            $('#usernameField, #passwordField').removeClass('is-invalid');
+        $('#emailField, #passwordField').on('keyup', function() {
+            $('#emailField, #passwordField').removeClass('is-invalid');
         });
     </script>
 {% endblock %}

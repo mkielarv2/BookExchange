@@ -16,10 +16,10 @@ class Login(APIView):
 
         payload = request.data
 
-        username = payload["username"]
+        email = payload["email"]
         password = payload["password"]
 
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(request, username=email, password=password)
 
         if user is None:
             responsePayload = {
