@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row justify-content-center" style="margin-top: 35px;">
+        <section class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+            <div class="card-deck col-12" id="container">
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="titleField">Title</label>
+                                <input type="text" class="form-control" id="titleField"
+                                       placeholder="Title of your book">
+                            </div>
+                            <div class="form-group">
+                                <label for="authorField">Author</label>
+                                <input type="text" class="form-control" id="authorField"
+                                       placeholder="Author of your book">
+                            </div>
+                            <div class="form-group">
+                                <label for="categorySelect">Category</label>
+                                <select class="form-control" id="categorySelect">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="locationSelect">Location</label>
+                                <select class="form-control" id="locationSelect">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="conditionSelect">Condition</label>
+                                <select class="form-control" id="conditionSelect">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="descriptionField">Description</label>
+                                <textarea class="form-control" id="descriptionField" rows="3"
+                                          placeholder="Short description of books condition and appearance"></textarea>
+                            </div>
+                            <form>
+                                <div class="form-group">
+                                    <label for="fileInput">Photo</label>
+                                    <input multiple type="file" class="form-control-file" id="fileInput">
+                                </div>
+                            </form>
+                            <button type="submit" class="btn btn-primary btn-block" id="submit-button" disabled>
+                                Register
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            let titleField = $("#titleField")
+            let authorField = $("#authorField")
+            let categorySelect = $("#categorySelect")
+            let locationSelect = $("#locationSelect")
+            let conditionSelect = $("#conditionSelect")
+            let descriptionField = $("#descriptionField")
+            let fileInput = $("#fileInput")
+
+            $.ajax({
+                url: '{% url 'offers:get_categories' %}',
+                type: 'GET',
+                success: function (data) {
+                    for (let i = 0; i < data.length; i++) {
+                        categorySelect.append("<option data-meta=\"" + data[i].id + "\">data[i].name</option>")
+                    }
+                }
+            });
+
+            $.ajax({
+                url: '{% url 'offers:get_localizations' %}',
+                type: 'GET',
+                success: function (data) {
+                    for (let i = 0; i < data.length; i++) {
+                        locationSelect.append("<option data-meta=\"" + data[i].id + "\">data[i].name</option>")
+                    }
+                }
+            });
+
+            $.ajax({
+                url: '{% url 'offers:get_conditions' %}',
+                type: 'GET',
+                success: function (data) {
+                    for (let i = 0; i < data.length; i++) {
+                        conditionSelect.append("<option data-meta=\"" + data[i].id + "\">data[i].name</option>")
+                    }
+                }
+            });
+        });
+
+        $("#submit-button").click(function (e) {
+            let titleField = $("#titleField")
+            let authorField = $("#authorField")
+            let categorySelect = $("#categorySelect")
+            let locationSelect = $("#locationSelect")
+            let conditionSelect = $("#conditionSelect")
+            let descriptionField = $("#descriptionField")
+            let fileInput = $("#fileInput")
+
+
+            $.ajax({
+                url: '{% url 'apiRegister' %}',
+                type: 'POST',
+                data: payload,
+                dataType: 'json',
+                success: function (data) {
+                    $('#container')
+                        .html('<div class="card border-success" id="formCard">\n    <div class="card-body">\n        <div class="card-body text-success">\n            <h5 class="card-title">Success</h5>\n            <p class="card-text">Registration completed successfully!</p>\n            <a href="{% url 'login' %}"><button type="button" class="btn btn-primary btn-block">Login</button></a>\n        </div>\n    </div>\n</div>');
+                },
+                error: function (data) {
+                    let err = JSON.parse(data.responseText);
+                    $('#' + err.cause + 'Feedback').text(err.desc);
+                    $('#' + err.cause).addClass('is-invalid');
+                    button.html('Submit');
+                },
+            });
+        });
+    </script>
+{% endblock %}

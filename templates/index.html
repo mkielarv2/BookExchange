@@ -23,7 +23,25 @@
 {% endblock %}
 
 {% block content %}
-    <div id="container" class="row justify-content-center align-items-center" style="margin-bottom: 25px"></div>
+    <div id="container" class="row justify-content-center align-items-center" style="margin-bottom: 25px">
+{#        {% for offer in offers %}#}
+{#            <div class="card-deck col-xl-2 col-lg-3 col-md-4 col-md-12">#}
+{#                <div class="card">#}
+{#                    <img src="https://via.placeholder.com/600x500"#}
+{#                         class="card-img-top">#}
+{#                    <div class="card-body">#}
+{#                        <h4 class="card-title">#}
+{#                            <a href="/">{{ offer.title }}</a>#}
+{#                        </h4>#}
+{#                    </div>#}
+{#                    <ul class="list-group list-group-flush">#}
+{#                        <li class="list-group-item">Autor: {{ offer.author }}</li>#}
+{#                        <li class="list-group-item">Wydanie: {{ offer.description }}</li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#            </div>#}
+{#        {% endfor %}#}
+    </div>
 {% endblock %}
 
 {% block script %}
@@ -32,15 +50,17 @@
             url: '{% url 'offers:get_offers' %}',
             type: 'GET',
             success: function (data) {
-                for (let i = 0; i < data.size; i++) {
-                    var hyperlink = "/"
-                    var imgSrc = "https://via.placeholder.com/600x500"
-                    var title = "Title"
-                    var author = "Author"
-                    var description = "Description"
+                for (let i = 0; i < data.length; i++) {
+                    console.log(data[i])
+                    let hyperlink = "/";
+                    let imgSrc = "https://via.placeholder.com/600x500";
+                    let title = data[i].title
+                    let author = data[i].author
+                    let description = data[i].description
 
                     // language=HTML
-                    var template = "<div class=\"card-deck col-xl-2 col-lg-3 col-md-4 col-md-12\">\n    <a class=\"card\">\n        <a href=\"" + hyperlink + "\">\n            <img src=\"" + imgSrc + "\" class=\"card-img-top\">\n        </a>\n        <div class=\"card-body\">\n            <h4 class=\"card-title\">\n                <a href=\"" + hyperlink + "\">" + title + "</a>\n            </h4>\n        </div>\n        <ul class=\"list-group list-group-flush\">\n            <li class=\"list-group-item\">Autor: " + author + "</li>\n            <li class=\"list-group-item\">Wydanie: " + description + "</li>\n        </ul>\n    </div>\n</div>"
+                    let template = "<div class=\"card-deck col-xl-2 col-lg-3 col-md-4 col-md-12\">\n    <div class=\"card\">\n        <a href=\"" + hyperlink + "\">\n            <img src=\"" + imgSrc + "\" class=\"card-img-top\">\n        </a>\n        <div class=\"card-body\">\n            <h4 class=\"card-title\">\n                <a href=\"" + hyperlink + "\">" + title + "</a>\n            </h4>\n        </div>\n        <ul class=\"list-group list-group-flush\">\n            <li class=\"list-group-item\">Autor: " + author + "</li>\n            <li class=\"list-group-item\">Wydanie: " + description + "</li>\n        </ul>\n    </div>\n</div>";
+                    $("#container").append(template)
                 }
             },
             error: function (data) {

@@ -19,11 +19,11 @@ urlpatterns = [
     path('api/user/rate', views.rate, name='apiRateUser'),
     path('api/user/rating/<int:user_id>', views.delete_rate, name='apiDeleteRating'),
 
-    path('registerTab/', views.static.registerTab, name='registerTab'),
-    path('loginTab/', views.static.registerTab, name='loginTab'),
-    path('productTab/', views.static.productTab, name='productTab'),
-    path('shopTab/', views.static.shopTab, name='shopTab'),
-    path('sorting/', views.static.sorting, name='sorting'),
-    path('userProducts/', views.static.userProducts, name='userProducts'),
+    # path('registerTab/', views.static.registerTab, name='registerTab'),
+    # path('loginTab/', views.static.registerTab, name='loginTab'),
+    # path('productTab/', views.static.productTab, name='productTab'),
+    # path('shopTab/', views.static.shopTab, name='shopTab'),
+    # path('sorting/', views.static.sorting, name='sorting'),
+    # path('userProducts/', views.static.userProducts, name='userProducts'),
 
 ]
