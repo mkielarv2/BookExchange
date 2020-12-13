@@ -44,14 +44,17 @@ def get_chat(request, offer_id):
 @permission_classes([IsAuthenticated])
 def send_message(request):
     """Send message"""
-    deserializer = MessagesDeserializer(data=json.loads(request.POST['payload']))
-    if not deserializer.is_valid():
-        return HttpResponse("{'status': 'failure', 'cause': 'deserializerError', 'desc': deserializer.errors}", status=422)
-    message = deserializer.save(sender=request.user, sending_time=datetime.now())
+    payload = request.POST.get('payload')
+    if not payload:
+        return JsonResponse({'status': 'failure', 'desc': 'missing payload argument'}, status=400)
+    serializer = MessagesDeserializer(data=json.loads(payload))
+    if not serializer.is_valid():
+        return JsonResponse({'status': 'failure', 'desc': serializer.errors}, status=422)
+    message = serializer.save(sender=request.user, sending_time=datetime.now())
     if message.sender != message.offer.user and message.recipient != message.offer.user:
         message.delete()
-        return HttpResponse("{'status': 'failure', 'desc': 'none of users is offer owner'}", status=422)
-    return HttpResponse("{'status': 'success'}", status=201)
+        return JsonResponse({'status': 'failure', 'desc': 'none of users is offer owner'}, status=409)
+    return JsonResponse({'status': 'success'}, status=201)
 
 
 @api_view(['GET'])

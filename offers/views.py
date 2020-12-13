@@ -25,13 +25,13 @@ def get_categories(request):
 
 @api_view(['GET'])
 def get_localizations(request):
-    """Get all category object"""
+    """Get all localizations object"""
     return JsonResponse(get_all_objects(Localization, LocalizationSerializer), safe=False)
 
 
 @api_view(['GET'])
 def get_conditions(request):
-    """Get all category object"""
+    """Get all conditions object"""
     return JsonResponse(get_all_objects(BookCondition, BookConditionSerializer), safe=False)
 
 
@@ -72,9 +72,9 @@ def get_offers(request):
     if 'category' in filters:
         offers = offers.filter(category__id=filters['category'])
     if 'condition' in filters:
-        offers = offers.filter(conditon__id=filters['condition'])
+        offers = offers.filter(condition__id=filters['condition'])
     if 'localization' in filters:
-        offers = offers.filter(localization__id=filters['localization'])
+        offers = offers.filter(location__id=filters['localization'])
     if 'author' in filters:
         offers = offers.filter(author__contains=filters['author'])
     if 'title' in filters:
