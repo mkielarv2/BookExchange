@@ -1,6 +1,7 @@
 import json
 
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.db.models import Q
 from django.http import JsonResponse
 from django.utils.datetime_safe import datetime
@@ -11,6 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from chat.models import MessagesSerializer, Messages, MessagesDeserializer, Comment, CommentSerializer, \
     CommentDeserializer
+from djangoBookExchange.settings import EMAIL_HOST_USER
 from master.models import UserSerializer
 from offers.models import Offers, OffersSerializer
 
@@ -54,6 +56,15 @@ def send_message(request):
     if message.sender != message.offer.user and message.recipient != message.offer.user:
         message.delete()
         return JsonResponse({'status': 'failure', 'desc': 'none of users is offer owner'}, status=409)
+    email_content = """
+    Witaj {},
+    masz nową wiadomość od użytkownika {} do oferty {} o treści:
+    "{}"
+    
+    Zespół BookswAPP
+    """.format(message.recipient.username, request.user.username, message.offer.title, message.message)
+
+    send_mail('BookswAPP powiadomienie czatu', email_content, EMAIL_HOST_USER, [message.recipient.email], fail_silently=False)
     return JsonResponse({'status': 'success'}, status=201)
 
 

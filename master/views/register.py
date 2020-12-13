@@ -3,9 +3,12 @@ import re
 from django.contrib.auth import password_validation
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from django.core.mail import send_mail
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from djangoBookExchange.settings import EMAIL_HOST_USER
 
 
 class Register(APIView):
@@ -39,5 +42,15 @@ class Register(APIView):
         user = User.objects.create(username=username, email=email)
         user.set_password(password)
         user.save()
+
+        email_content = """
+        Witaj {},
+        Twoje konto na BookswAPP zostało utworzone. Zachęcamy do stworzenia Twojej pierwszej oferty albo odnalezienia interesujących Cię książek.
+        Życzymy pomyślnych wymian!
+        
+        Zespół BookswAPP
+        """.format(username)
+
+        send_mail('BookswAPP rejestracja', email_content, EMAIL_HOST_USER, [email], fail_silently=False)
 
         return Response({"status": "success"}, status=201)

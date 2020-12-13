@@ -148,6 +148,18 @@ ACCOUNT_ACTIVATION_DAYS = 7  # One-week activation window
 
 AUTHENTICATION_BACKENDS = ['djangoBookExchange.EmailBackend.EmailBackend']
 
+# EMAIL CONFIGURATION
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'bookswappproject@gmail.com'
+EMAIL_HOST_PASSWORD = ''  # TODO tu wkleić haslo do konta
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+# HEROKU CONFIGURATION
+
 import django_heroku
 
 django_heroku.settings(locals())
