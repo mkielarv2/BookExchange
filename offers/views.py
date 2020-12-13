@@ -42,10 +42,10 @@ def delete_offer(request, offer_id):
     """Delete offer"""
     offer = get_object_or_404(Offers, pk=offer_id)
     if offer.user != request.user:
-        return HttpResponseForbidden()
+        return JsonResponse({'status': 'failure', 'desc': 'access forbidden'}, status=403)
     offer.is_deleted = True
     offer.save()
-    return HttpResponse("{'status': 'success'}", status=200)
+    return JsonResponse({'status': 'success'})
 
 
 @api_view(['GET'])
@@ -88,14 +88,20 @@ def get_offers(request):
 @permission_classes([IsAuthenticated])
 def create_offer(request):
     """Create offer"""
-    deserializer = OffersDeserializer(data=json.loads(request.POST['payload']))
+    payload = request.POST.get('payload')
+    if not payload:
+        return JsonResponse({'status': 'failure', 'desc': 'missing payload argument'}, status=400)
+    deserializer = OffersDeserializer(data=json.loads(payload))
     if deserializer.is_valid():
         offer = deserializer.save(date=timezone.now(), user=request.user)
+        files = []
         for file_list in request.FILES:
             for file in request.FILES.getlist(file_list):
-                url = ImageURL()
-                url.image = file
-                url.offer_id = offer
-                url.save()
-        return HttpResponse('{"status": "success"}', status=200)
-    return HttpResponse('{"status": "failure"}', status=400)
+                files.append(file)
+        if len(files) > 5:
+            files = files[:5]
+        for file in files:
+            url = ImageURL(image=file, offer_id=offer)
+            url.save()
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'failure', 'desc': deserializer.errors}, status=400)
