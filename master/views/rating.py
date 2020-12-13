@@ -19,7 +19,7 @@ def rate(request):
     if serializer.is_valid():
         serializer.save(user=request.user)
         return JsonResponse({'status': 'success'})
-    return JsonResponse({'status': 'failure', 'desc': serializer.errors}, status=400)
+    return JsonResponse({'status': 'failure', 'desc': serializer.errors}, status=422)
 
 
 @api_view(['DELETE'])

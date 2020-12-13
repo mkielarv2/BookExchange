@@ -20,4 +20,4 @@ def edit_user(request):
     if serializer.is_valid():
         serializer.save()
         return JsonResponse({'status': 'success'})
-    return JsonResponse({'status': 'failure', 'desc': serializer.errors}, status=400)
+    return JsonResponse({'status': 'failure', 'desc': serializer.errors}, status=422)

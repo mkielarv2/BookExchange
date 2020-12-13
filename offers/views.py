@@ -103,5 +103,5 @@ def create_offer(request):
         for file in files:
             url = ImageURL(image=file, offer_id=offer)
             url.save()
-        return JsonResponse({'status': 'success'})
-    return JsonResponse({'status': 'failure', 'desc': deserializer.errors}, status=400)
+        return JsonResponse({'status': 'success'}, status=201)
+    return JsonResponse({'status': 'failure', 'desc': deserializer.errors}, status=422)

@@ -16,6 +16,7 @@ class Messages(models.Model):
 
 class MessagesSerializer(serializers.ModelSerializer):
     sender = UserSerializer()
+    recipient = UserSerializer()
 
     class Meta:
         model = Messages
