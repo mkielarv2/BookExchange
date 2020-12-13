@@ -1,4 +1,6 @@
 from django.urls import path
+from django.views.generic import TemplateView
+from rest_framework.schemas import get_schema_view
 
 from . import views
 
@@ -20,6 +22,16 @@ urlpatterns = [
     path('api/user/rate', views.rate, name='apiRateUser'),
     path('api/user/rating/<int:user_id>', views.delete_rate, name='apiDeleteRating'),
 
+    path('openapi/', get_schema_view(
+        title="Your Project",
+        description="API for all things …",
+        version="1.0.0"
+    ), name='openapi-schema'),
+
+    path('docs/', TemplateView.as_view(
+        template_name='documentation.html',
+        extra_context={'schema_url': 'openapi-schema'}
+    ), name='swagger-ui'),
     # path('registerTab/', views.static.registerTab, name='registerTab'),
     # path('loginTab/', views.static.registerTab, name='loginTab'),
     # path('productTab/', views.static.productTab, name='productTab'),

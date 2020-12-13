@@ -54,13 +54,9 @@
 {% block script %}
     <script>
         $(document).ready(function () {
-            let titleField = $("#titleField")
-            let authorField = $("#authorField")
             let categorySelect = $("#categorySelect")
             let locationSelect = $("#locationSelect")
             let conditionSelect = $("#conditionSelect")
-            let descriptionField = $("#descriptionField")
-            let fileInput = $("#fileInput")
 
             $.ajax({
                 url: '{% url 'offers:get_categories' %}',
