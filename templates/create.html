@@ -95,6 +95,9 @@
         });
 
         $("#submit-button").click(function (e) {
+            let button = $(this);
+            button.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+
             let titleField = $("#titleField")
             let authorField = $("#authorField")
             let categorySelect = $("#categorySelect")
@@ -128,10 +131,10 @@
                 contentType: false,
                 processData: false,
                 success: function (data) {
-                    console.log(data)
+                    window.location = '{% url 'index' %}'
                 },
                 error: function (data) {
-                    console.log(data)
+                    button.html('Submit');
                 },
             });
         });
