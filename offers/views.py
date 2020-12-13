@@ -107,3 +107,21 @@ def create_offer(request):
             url.save()
         return JsonResponse({'status': 'success'}, status=201)
     return JsonResponse({'status': 'failure', 'desc': deserializer.errors}, status=422)
+
+
+@api_view(['PATCH'])
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
+def edit_offer(request, offer_id):
+    """Edit offer"""
+    payload = request.data.get('payload')
+    if not payload:
+        return JsonResponse({'status': 'failure', 'desc': 'missing payload argument'}, status=400)
+    offer = get_object_or_404(Offers, pk=offer_id)
+    if offer.user != request.user:
+        return JsonResponse({'status': 'failure', 'desc': 'access forbidden'}, status=403)
+    serializer = OffersDeserializer(data=json.loads(payload), instance=offer)
+    if serializer.is_valid():
+        serializer.save()
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'failure', 'desc': serializer.errors}, status=422)
