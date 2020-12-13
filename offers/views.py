@@ -79,6 +79,8 @@ def get_offers(request):
         offers = offers.filter(author__contains=filters['author'])
     if 'title' in filters:
         offers = offers.filter(title__contains=filters['title'])
+    if 'sort' in filters:
+        offers = offers.order_by(filters['sort'])
     serializer = OffersSerializer(offers, many=True)
     return JsonResponse(serializer.data, safe=False)
 
