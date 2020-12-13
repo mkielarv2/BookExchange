@@ -1,6 +1,6 @@
 import json
 
-from django.http import JsonResponse, HttpResponseForbidden, HttpResponse
+from django.http import JsonResponse
 from django.utils import timezone
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
