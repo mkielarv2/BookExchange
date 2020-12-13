@@ -19,27 +19,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="categorySelect">Category</label>
-                                <select class="form-control" id="categorySelect">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
+                                <select class="form-control" id="categorySelect"></select>
                             </div>
                             <div class="form-group">
                                 <label for="locationSelect">Location</label>
-                                <select class="form-control" id="locationSelect">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
+                                <select class="form-control" id="locationSelect"></select>
                             </div>
                             <div class="form-group">
                                 <label for="conditionSelect">Condition</label>
-                                <select class="form-control" id="conditionSelect">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
+                                <select class="form-control" id="conditionSelect"></select>
                             </div>
                             <div class="form-group">
                                 <label for="descriptionField">Description</label>
@@ -79,7 +67,7 @@
                 type: 'GET',
                 success: function (data) {
                     for (let i = 0; i < data.length; i++) {
-                        categorySelect.append("<option data-meta=\"" + data[i].id + "\">data[i].name</option>")
+                        categorySelect.append("<option data-meta=\"" + data[i].id + "\">" + data[i].name + "</option>")
                     }
                 }
             });
@@ -89,7 +77,7 @@
                 type: 'GET',
                 success: function (data) {
                     for (let i = 0; i < data.length; i++) {
-                        locationSelect.append("<option data-meta=\"" + data[i].id + "\">data[i].name</option>")
+                        locationSelect.append("<option data-meta=\"" + data[i].id + "\">" + data[i].name + "</option>")
                     }
                 }
             });
@@ -99,7 +87,7 @@
                 type: 'GET',
                 success: function (data) {
                     for (let i = 0; i < data.length; i++) {
-                        conditionSelect.append("<option data-meta=\"" + data[i].id + "\">data[i].name</option>")
+                        conditionSelect.append("<option data-meta=\"" + data[i].id + "\">" + data[i].name + "</option>")
                     }
                 }
             });

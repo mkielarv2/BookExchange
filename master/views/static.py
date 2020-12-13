@@ -31,6 +31,12 @@ def change(request):
     return render(request, 'change.html')
 
 
+def create(request):
+    return render(request, 'create.html')
+
+
+# ----------------------------------------------------------------
+
 def registerTab(request):
     return render(request, 'register_tab.html')
 
