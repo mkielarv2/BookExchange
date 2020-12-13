@@ -41,7 +41,7 @@
                                 </div>
                             </form>
                             <button type="submit" class="btn btn-primary btn-block" id="submit-button">
-                                Register
+                                Submit
                             </button>
                         </form>
                     </div>
@@ -86,8 +86,9 @@
                 url: '{% url 'offers:get_conditions' %}',
                 type: 'GET',
                 success: function (data) {
+                    console.log(data)
                     for (let i = 0; i < data.length; i++) {
-                        conditionSelect.append("<option data-meta=\"" + data[i].id + "\">" + data[i].name + "</option>")
+                        conditionSelect.append("<option data-meta=\"" + data[i].id + "\">" + data[i].condition + "</option>")
                     }
                 }
             });
@@ -105,16 +106,16 @@
             let payload = {
                 title: titleField.val(),
                 author: authorField.val(),
-                category: categorySelect.val(),
-                location: locationSelect.val(),
-                condition: conditionSelect.val(),
+                category: categorySelect.children("option:selected").attr("data-meta"),
+                location: locationSelect.children("option:selected").attr("data-meta"),
+                condition: conditionSelect.children("option:selected").attr("data-meta"),
                 description: descriptionField.val()
             }
 
             $.ajax({
                 url: '{% url 'offers:create_offer' %}',
                 type: 'POST',
-                data: payload,
+                data: {payload: JSON.stringify(payload)},
                 dataType: 'json',
                 success: function (data) {
                     console.log(data)
