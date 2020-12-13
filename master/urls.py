@@ -32,11 +32,4 @@ urlpatterns = [
         template_name='documentation.html',
         extra_context={'schema_url': 'openapi-schema'}
     ), name='swagger-ui'),
-    # path('registerTab/', views.static.registerTab, name='registerTab'),
-    # path('loginTab/', views.static.registerTab, name='loginTab'),
-    # path('productTab/', views.static.productTab, name='productTab'),
-    # path('shopTab/', views.static.shopTab, name='shopTab'),
-    # path('sorting/', views.static.sorting, name='sorting'),
-    # path('userProducts/', views.static.userProducts, name='userProducts'),
-
 ]
