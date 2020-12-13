@@ -59,7 +59,7 @@ def get_offer(request, offer_id):
 @api_view(['GET'])
 def get_user_offers(request, user_id):
     """Get offers of one user"""
-    offers = Offers.objects.filter(is_deleted=False).filter(user__id=user_id)
+    offers = Offers.objects.filter(user__id=user_id)
     serializer = OffersSerializer(offers, many=True)
     return JsonResponse(serializer.data, safe=False)
 
