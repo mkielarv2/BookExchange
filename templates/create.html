@@ -112,11 +112,21 @@
                 description: descriptionField.val()
             }
 
+            let fd = new FormData();
+            let files = fileInput[0].files
+
+            for (let i = 0; i < files.length; i++) {
+                fd.append('file' + i, files[i])
+            }
+            fd.append('payload', JSON.stringify(payload))
+
             $.ajax({
                 url: '{% url 'offers:create_offer' %}',
                 type: 'POST',
-                data: {payload: JSON.stringify(payload)},
-                dataType: 'json',
+                data: fd,
+                file: fileInput.files,
+                contentType: false,
+                processData: false,
                 success: function (data) {
                     console.log(data)
                 },
