@@ -1,6 +1,6 @@
 import json
 
-from django.http import HttpResponse
+from django.http import JsonResponse
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -13,8 +13,11 @@ from master.models import UserDeserializer
 @permission_classes([IsAuthenticated])
 def edit_user(request):
     """Edit your account"""
-    serializer = UserDeserializer(data=json.loads(request.data['payload']), instance=request.user)
+    payload = request.data.get('payload')
+    if not payload:
+        return JsonResponse({'status': 'failure', 'desc': 'missing payload argument'}, status=400)
+    serializer = UserDeserializer(data=json.loads(payload), instance=request.user)
     if serializer.is_valid():
         serializer.save()
-        return HttpResponse('{"status": "success"}', status=200)
-    return HttpResponse('{"status": "failure"}', status=400)
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'failure', 'desc': serializer.errors}, status=400)
