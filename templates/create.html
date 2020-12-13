@@ -40,7 +40,7 @@
                                     <input multiple type="file" class="form-control-file" id="fileInput">
                                 </div>
                             </form>
-                            <button type="submit" class="btn btn-primary btn-block" id="submit-button" disabled>
+                            <button type="submit" class="btn btn-primary btn-block" id="submit-button">
                                 Register
                             </button>
                         </form>
@@ -102,21 +102,25 @@
             let descriptionField = $("#descriptionField")
             let fileInput = $("#fileInput")
 
+            let payload = {
+                title: titleField.val(),
+                author: authorField.val(),
+                category: categorySelect.val(),
+                location: locationSelect.val(),
+                condition: conditionSelect.val(),
+                description: descriptionField.val()
+            }
 
             $.ajax({
-                url: '{% url 'apiRegister' %}',
+                url: '{% url 'offers:create_offer' %}',
                 type: 'POST',
                 data: payload,
                 dataType: 'json',
                 success: function (data) {
-                    $('#container')
-                        .html('<div class="card border-success" id="formCard">\n    <div class="card-body">\n        <div class="card-body text-success">\n            <h5 class="card-title">Success</h5>\n            <p class="card-text">Registration completed successfully!</p>\n            <a href="{% url 'login' %}"><button type="button" class="btn btn-primary btn-block">Login</button></a>\n        </div>\n    </div>\n</div>');
+                    console.log(data)
                 },
                 error: function (data) {
-                    let err = JSON.parse(data.responseText);
-                    $('#' + err.cause + 'Feedback').text(err.desc);
-                    $('#' + err.cause).addClass('is-invalid');
-                    button.html('Submit');
+                    console.log(data)
                 },
             });
         });
