@@ -1,104 +1,259 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8">
+    <title>BookswAPP</title>
+    <link rel="stylesheet" href="master.css">
+    <link rel="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="product.css">
+    <link rel="stylesheet" href="nav.css">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+  </head>
+  <body>
+    <header></header>
+    <nav>
+      <div>
+        <p>Logowanie</p>
+        <hr/>
+        <div class="button">
+          Zaloguj się
+        </div>
+        <div class="button">
+          Zarejestruj się
+        </div>
+        <p>Pomoc</p>
+        <hr/>
+      </div>
+      <div>
 
-{% block style %}
-    <style>
-        .card-img-top {
-            flex-grow: 1;
-            object-fit: contain;
-        }
-
-        .card-body {
-            flex-grow: 0;
-        }
-
-        .row > div[class*='col-'] {
-            display: flex;
-            flex: 1 0 auto;
-        }
-
-        .card-deck {
-            margin-top: 25px;
-        }
-    </style>
-{% endblock %}
-
-{% block content %}
-    <div id="container" class="row justify-content-center align-items-center" style="margin-bottom: 25px">
-{#        {% for offer in offers %}#}
-{#            <div class="card-deck col-xl-2 col-lg-3 col-md-4 col-md-12">#}
-{#                <div class="card">#}
-{#                    <img src="https://via.placeholder.com/600x500"#}
-{#                         class="card-img-top">#}
-{#                    <div class="card-body">#}
-{#                        <h4 class="card-title">#}
-{#                            <a href="/">{{ offer.title }}</a>#}
-{#                        </h4>#}
-{#                    </div>#}
-{#                    <ul class="list-group list-group-flush">#}
-{#                        <li class="list-group-item">Autor: {{ offer.author }}</li>#}
-{#                        <li class="list-group-item">Wydanie: {{ offer.description }}</li>#}
-{#                    </ul>#}
-{#                </div>#}
-{#            </div>#}
-{#        {% endfor %}#}
+      </div>
+    </nav>
+    <div class="search_bar">
+      <input type="text" name="" value="">
     </div>
-{% endblock %}
+    <!-- DIV do przegląania zamieszczonych ogłoszeń -->
+    <div class="shop">
+      <!-- w data-id potrzebne jest id produktu,
+      żebym ajaxem wysłał zapytanko o wyświetlenie konkretnego produktu -->
+      <div data-id="product-id">
+        <div class="product_image">
+          <!-- jeśli będzie kilka zdjęć, to wyświetlić tylko jedno z nich -->
+          <img src="test.png" alt="">
+        </div>
+        <!-- wypisanie podstawowych info o danym listowaniu -->
+        <div class="product_info">
+          <div>Wacław Wawrzyniak</div>
+          <div>Język polski</div>
+          <div>Używana</div>
+        </div>
+      </div>
+      <!-- rozdzielnik. super by było jakbyście dali go radę nie wyświetlać na końcu -->
+      <br/>
+      <!-- reszta to samo, zostawiam żeby Wam schemat wzoru zostawić -->
+      <div data-id="product-id">
+        <div class="product_image">
+          <img src="test.png" alt="">
+        </div>
+        <div class="product_info">
+          <div>Wacław Wawrzyniak</div>
+          <div>Język polski</div>
+          <div>Używana</div>
+        </div>
+      </div>
+      <br/>
+      <div data-id="product-id">
+        <div class="product_image">
+          <img src="test.png" alt="">
+        </div>
+        <div class="product_info">
+          <div>Wacław Wawrzyniak</div>
+          <div>Język polski</div>
+          <div>Używana</div>
+        </div>
+      </div>
+      <br/>
+    </div>
 
-{% block script %}
-    <script>
-        $.ajax({
-            url: '{% url 'offers:get_offers' %}',
-            type: 'GET',
-            success: function (data) {
-                for (let i = 0; i < data.length; i++) {
-                    console.log(data[i])
-                    let hyperlink = "/";
-                    let imgSrc = data[i].images[0] || "https://via.placeholder.com/600x500";
-                    let title = data[i].title;
-                    let author = data[i].author;
-                    let description = data[i].description;
+    <!-- DIV do przeglądania konkretnego ogłoszenia -->
+    <div class="product tab">
+      <div class="closer">
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="container">
+        <!-- tutaj będzie div z wyświetlaniem fotosów. jeszcze go dopiszę potem -->
+        <div class="photo">
+          <img src="test.png" alt="">
+          <img src="test.png" alt="">
+          <img src="test.png" alt="">
+          <!-- Wypisanie ścieżek do zdjęć danego produktu, żeby potem js'em je wyświetlić -->
+          <div class="photo_names" style="display: none;">
+            <i>*ścieżka do foto nr 1*</i>
+            <i>*ścieżka do foto nr 2*</i>
+            <i>*ścieżka do foto nr 3*</i>
+            itd...
+          </div>
+        </div>
+        <!-- niebieski pasek z głównym info o produkcie -->
+        <div class="bar">
+          <!-- uwaga: jest odwrotna kolejność niż w przypadku listowania wszystkich produktów przy shop_tab -->
+          <div>Język polski</div>
+          <div>Wacław Wawrzyniak</div>
+        </div>
+        <div class="info">
+          <div>Wystawone przez: <span style="font-weight: bold">*IMIĘ*</span></div>
+          <hr/>
+          <div>
+            <p>Opis wystawiającego<p>
+            <p>*OPIS*</p>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="register tab">
+          <form>
+            <p>Adres e-mail:</p>
+            <div class="input_tab">
+              <input type="text" name="email" placeholder="Wpisz adres e-mail...">
+            </div>
+            <p>Hasło:</p>
+            <div class="input_tab">
+              <input type="text" name="email" placeholder="Wpisz hasło...">
+            </div>
+            <p>Powtórz hasło:</p>
+            <div class="input_tab">
+              <input type="text" name="email" placeholder="Wpisz ponownie hasło...">
+            </div>
+            <p>Imię:</p>
+            <div class="input_tab">
+              <input type="text" name="email" placeholder="Wpisz swoje imię...">
+            </div>
 
-                    // language=HTML
-                    let template = "<div class=\"card-deck col-xl-2 col-lg-3 col-md-4 col-md-12\">\n    <div class=\"card\">\n        <a href=\"" + hyperlink + "\">\n            <img src=\"" + imgSrc + "\" class=\"card-img-top\">\n        </a>\n        <div class=\"card-body\">\n            <h4 class=\"card-title\">\n                <a href=\"" + hyperlink + "\">" + title + "</a>\n            </h4>\n        </div>\n        <ul class=\"list-group list-group-flush\">\n            <li class=\"list-group-item\">Autor: " + author + "</li>\n            <li class=\"list-group-item\">Wydanie: " + description + "</li>\n        </ul>\n    </div>\n</div>";
-                    $("#container").append(template)
-                }
-            },
-            error: function (data) {
-            },
-        });
+            <div class="eula">
+              <div class="checkbox_div_unselected pointer" style="float: left"><i class="fas fa-check"></i></div>
+              <div>
+                <p class="ann_eula">
+                  Oświadczam, że zapoznałem się z treścią
+                  <a href="regulamin.pdf" target="_blank">regulaminu</a>
+                  oraz
+                  <a href="polityka_prywatnosci.pdf" target="_blank">polityką prywatności</a>
+                  i akceptuję ich treść.
+                </p>
+              </div>
+            </div>
+            <button class="reg_button_disabled" disabled type="submit" value="Zaloguj">Zarejestruj się</button>
+          </form>
+        </div>
 
-    </script>
+        <div class="login tab">
+          <form>
+            <p>Adres e-mail:</p>
+            <div class="input_tab">
+              <input type="text" name="email" placeholder="Wpisz adres e-mail...">
+            </div>
+            <p>Hasło:</p>
+            <div class="input_tab">
+              <input type="text" name="email" placeholder="Wpisz hasło...">
+            </div>
 
-    {#<!-- w data-id potrzebne jest id produktu,#}
-    {#        żebym ajaxem wysłał zapytanko o wyświetlenie konkretnego produktu -->#}
-    {#        <div data-id="product-id">#}
-    {#            <div class="product_image">#}
-    {#                <!-- jeśli będzie kilka zdjęć, to wyświetlić tylko jedno z nich -->#}
-    {#                <img src="test.png" alt="">#}
-    {#            </div>#}
-    {#            <!-- wypisanie podstawowych info o danym listowaniu -->#}
-    {#            <div class="product_info">#}
-    {#                <div>Wacław Wawrzyniak</div>#}
-    {#                <div>Język polski</div>#}
-    {#                <div>Używana</div>#}
-    {#            </div>#}
-    {#        </div>#}
-    {#        <!-- rozdzielnik. super by było jakbyście dali go radę nie wyświetlać na końcu -->#}
-    {#        <br/>#}
-{% endblock %}
+            <button class="reg_button_disabled" disabled type="submit" value="Zaloguj">Zaloguj się</button>
+          </form>
+        </div>
 
-{#<div class="card-deck col-xl-2 col-lg-3 col-md-4 col-md-12">#}
-{#                <div class="card">#}
-{#                    <img src="https://via.placeholder.com/600x500"#}
-{#                         class="card-img-top">#}
-{#                    <div class="card-body">#}
-{#                        <h4 class="card-title">#}
-{#                            <a href="/">{{ offer.title }}</a>#}
-{#                        </h4>#}
-{#                    </div>#}
-{#                    <ul class="list-group list-group-flush">#}
-{#                        <li class="list-group-item">Autor: {{ offer.author }}</li>#}
-{#                        <li class="list-group-item">Wydanie: {{ offer.description }}</li>#}
-{#                    </ul>#}
-{#                </div>#}
-{#            </div>#}
+        <div class="add_product tab">
+          <div class="container">
+
+            <p>Gatunek</p>
+            <select name="genre" required>
+              <!-- jeśli dodawać gatunki do bazy to tutaj żeby je wypisać -->
+              <option value="*gatunek*">*gatunek*</option>
+              <option value="*gatunek*">*gatunek*</option>
+              <option value="*gatunek*">*gatunek*</option>
+            </select>
+
+            <div class="settings">
+              <p>Stan książki</p>
+              <!-- <i></i> to będą "bullety" do zaznaczania po zabawie z js -->
+              <span><i></i>Nowa</span>
+              <span><i></i>Używana</span>
+              <br/>
+              <p>Stan książki</p>
+              <span><i></i>Wymiana</span>
+              <span><i></i>Sprzedaż</span>
+                <!-- notka: to będzie się wyświetlać tylko kiedy zaznaczona będzie sprzedaż -->
+                <div class="price" style="display: none">
+                  <input type="text" name="price" value="" disabled>
+                </div>
+            </div>
+            <p>Dane oferty</p>
+            <input type="text" name="title" placeholder="Tytuł książki...">
+            <input type="text" name="title" placeholder="Autor/autorzy książki...">
+            <input type="text" name="title" placeholder="Opis...">
+            <div class="add_files">
+              <!-- możecie rzucić okiem na UI design jak to wygląda. nie wiem jak się robi uploadowanka -->
+              <div class=""></div>
+              <div class=""></div>
+              <div class=""></div>
+              <div class=""></div>
+              <div class=""></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sorting">
+          <p>Gatunek</p>
+          <select name="genre" required>
+            <!-- jeśli dodawać gatunki do bazy to tutaj żeby je wypisać -->
+            <option value="*gatunek*">*gatunek*</option>
+            <option value="*gatunek*">*gatunek*</option>
+            <option value="*gatunek*">*gatunek*</option>
+            </select>
+          <!-- <i></i> to będą "bullety" do zaznaczania po zabawie z js -->
+          <!-- sortowanie zrobię na podstawie już wyświetlonych produktów w js, tylko może jakieś dane (typu gatunek)
+              w dataset'cie by się przydało zrobić. Śmiało modyfikujcie, dodawajcie wedle uznania czy coś-->
+          <p>Opcje sortowania</p>
+          <span><i></i>Rosnąco (A-Z)</span>
+          <span><i></i>Majeljąco (Z-A)</span>
+          <p>Opcje sortowania</p>
+          <span><i></i>Autorzy</span>
+          <span><i></i>Gatunki</span>
+          <span><i></i>Tytuły</span>
+        </div>
+
+        <div class="user_products">
+          <p>Aktualne ogłoszenia</p>
+          <div>
+            <!-- zdjęcie -->
+            <div>
+              <img src="test.png" alt="">
+            </div>
+            <!-- dane -->
+            <div class="">
+              <div class="product_info">
+                <div>Wacław Wawrzyniak</div>
+                <div>Język polski</div>
+                <div>Używana</div>
+              </div>
+              <div class="product_actions">
+                <p>Ustawienia ugłoszenia</p>
+                <div>Oznacz jako nieaktualne</div>
+                <div>Edycja</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="product_messages_owner">
+          <p>Twoje ogłoszenia</p>
+          <div class="">
+
+          </div>
+          <p>Ogłoszenia do któr</p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="tabs.js">
+
+  </script>
+</html>

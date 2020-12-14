@@ -1,0 +1,66 @@
+*
+{
+  margin: 0;
+  padding: 0;
+  color: #707070;
+  font-family: arial;
+  /* #9BD7FF */
+}
+.container
+{
+  display: block;
+  position: absolute;
+  height: 100%; width: 100%;
+}
+header
+{
+  position: fixed;
+  width: 100%; height: 8vh;
+  background: #9BD7FF;
+}
+
+.search_bar
+{
+  width: 90%; height: 8vh;
+  display: inline-block;
+  margin: 10vh 5% 2vh;
+  border: 0.1vh solid #DBDBDB; border-radius: 1vh;
+  background: #FBFDFF;
+}
+.search_bar input
+{
+  font-size: 1.5em;
+  width: 80%; height: 80%;
+  display: block;
+  margin: 2.5% auto;
+  border: 0; border-radius: 3px;
+  background: #FBFDFF;
+}
+.search_bar input:focus
+{
+  outline: none;
+}
+.closer
+{
+  display: block;
+  top: 1em; right: 1em;
+  background: white;
+  z-index: 5;
+  position: absolute;
+  width: 3em;
+  height: 3em;
+  border: 1px solid #707070;
+  border-radius: 50%;
+  box-shadow: 3vh 3vh 5vh grey;
+}
+.tab
+{
+  top: 0;
+  left: 110%;
+  position: fixed;
+  transition: 0.5s;
+}
+.tabIsShown
+{
+  left: 0 !important;
+}
