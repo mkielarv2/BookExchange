@@ -1,3 +1,5 @@
+import datetime
+
 from django.conf import settings
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as authLogin
@@ -35,4 +37,20 @@ class Login(APIView):
             "status": "success",
             "redirect": resolve_url(settings.LOGIN_REDIRECT_URL)
         }
-        return Response(responsePayload, status=200)
+
+        response = Response(responsePayload, status=200)
+
+        expires = datetime.datetime.strftime(
+            datetime.datetime.utcnow() + datetime.timedelta(seconds=365 * 24 * 60 * 60),
+            "%a, %d-%b-%Y %H:%M:%S GMT",
+        )
+        response.set_cookie(
+            'my_id',
+            request.user.id,
+            max_age=365 * 24 * 60 * 60,
+            expires=expires,
+            domain=settings.SESSION_COOKIE_DOMAIN,
+            secure=settings.SESSION_COOKIE_SECURE or None,
+        )
+
+        return response
