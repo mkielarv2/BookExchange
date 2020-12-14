@@ -13,4 +13,5 @@ urlpatterns = [
     path('user/<int:user_id>', views.get_user_offers, name='user_offers'),
     path('', views.get_offers, name='get_offers'),
     path('create', views.create_offer, name='create_offer'),
+    path('edit/<int:offer_id>', views.edit_offer, name='edit_offer'),
 ]

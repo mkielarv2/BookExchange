@@ -1,8 +1,9 @@
 import json
 
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from django.db.models import Q
-from django.http import JsonResponse, HttpResponse, HttpResponseForbidden
+from django.http import JsonResponse
 from django.utils.datetime_safe import datetime
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
@@ -11,6 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from chat.models import MessagesSerializer, Messages, MessagesDeserializer, Comment, CommentSerializer, \
     CommentDeserializer
+from djangoBookExchange.settings import EMAIL_HOST_USER
 from master.models import UserSerializer
 from offers.models import Offers, OffersSerializer
 
@@ -54,6 +56,15 @@ def send_message(request):
     if message.sender != message.offer.user and message.recipient != message.offer.user:
         message.delete()
         return JsonResponse({'status': 'failure', 'desc': 'none of users is offer owner'}, status=409)
+    email_content = """
+    Witaj {},
+    masz nową wiadomość od użytkownika {} do oferty {} o treści:
+    "{}"
+    
+    Zespół BookswAPP
+    """.format(message.recipient.username, request.user.username, message.offer.title, message.message)
+
+    send_mail('BookswAPP powiadomienie czatu', email_content, EMAIL_HOST_USER, [message.recipient.email], fail_silently=False)
     return JsonResponse({'status': 'success'}, status=201)
 
 
@@ -83,11 +94,14 @@ def get_comments(request, user_id):
 @permission_classes([IsAuthenticated])
 def add_comment(request):
     """Add comment about user"""
-    deserializer = CommentDeserializer(data=json.loads(request.POST['payload']))
+    payload = request.data.get('payload')
+    if not payload:
+        return JsonResponse({'status': 'failure', 'desc': 'missing payload argument'}, status=400)
+    deserializer = CommentDeserializer(data=json.loads(payload))
     if not deserializer.is_valid():
-        return HttpResponse("{'status': 'failure', 'cause': 'deserializerError', 'desc': deserializer.errors}", status=422)
+        return JsonResponse({'status': 'failure', 'desc': deserializer.errors}, status=422)
     deserializer.save(author=request.user, adding_time=datetime.now())
-    return HttpResponse("{'status': 'success'}", status=201)
+    return JsonResponse({'status': 'success'}, status=201)
 
 
 @api_view(['DELETE'])
@@ -97,6 +111,6 @@ def delete_comment(request, comment_id):
     """Delete comment"""
     comment = get_object_or_404(Comment, pk=comment_id)
     if comment.user != request.user:
-        return HttpResponseForbidden("{'status': 'failure'}")
+        return JsonResponse({'status': 'failure', 'desc': 'access forbidden'}, status=403)
     comment.delete()
-    return HttpResponse("{'status': 'success'}", status=200)
+    return JsonResponse({'status': 'success'})

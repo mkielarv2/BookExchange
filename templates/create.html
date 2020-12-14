@@ -41,7 +41,7 @@
                                 </div>
                             </form>
                             <button type="submit" class="btn btn-primary btn-block" id="submit-button">
-                                Register
+                                Submit
                             </button>
                         </form>
                     </div>
@@ -54,13 +54,9 @@
 {% block script %}
     <script>
         $(document).ready(function () {
-            let titleField = $("#titleField")
-            let authorField = $("#authorField")
             let categorySelect = $("#categorySelect")
             let locationSelect = $("#locationSelect")
             let conditionSelect = $("#conditionSelect")
-            let descriptionField = $("#descriptionField")
-            let fileInput = $("#fileInput")
 
             $.ajax({
                 url: '{% url 'offers:get_categories' %}',
@@ -86,14 +82,18 @@
                 url: '{% url 'offers:get_conditions' %}',
                 type: 'GET',
                 success: function (data) {
+                    console.log(data)
                     for (let i = 0; i < data.length; i++) {
-                        conditionSelect.append("<option data-meta=\"" + data[i].id + "\">" + data[i].name + "</option>")
+                        conditionSelect.append("<option data-meta=\"" + data[i].id + "\">" + data[i].condition + "</option>")
                     }
                 }
             });
         });
 
         $("#submit-button").click(function (e) {
+            let button = $(this);
+            button.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+
             let titleField = $("#titleField")
             let authorField = $("#authorField")
             let categorySelect = $("#categorySelect")
@@ -105,22 +105,32 @@
             let payload = {
                 title: titleField.val(),
                 author: authorField.val(),
-                category: categorySelect.val(),
-                location: locationSelect.val(),
-                condition: conditionSelect.val(),
+                category: categorySelect.children("option:selected").attr("data-meta"),
+                location: locationSelect.children("option:selected").attr("data-meta"),
+                condition: conditionSelect.children("option:selected").attr("data-meta"),
                 description: descriptionField.val()
             }
+
+            let fd = new FormData();
+            let files = fileInput[0].files
+
+            for (let i = 0; i < files.length; i++) {
+                fd.append('file' + i, files[i])
+            }
+            fd.append('payload', JSON.stringify(payload))
 
             $.ajax({
                 url: '{% url 'offers:create_offer' %}',
                 type: 'POST',
-                data: payload,
-                dataType: 'json',
+                data: fd,
+                file: fileInput.files,
+                contentType: false,
+                processData: false,
                 success: function (data) {
-                    console.log(data)
+                    window.location = '{% url 'index' %}'
                 },
                 error: function (data) {
-                    console.log(data)
+                    button.html('Submit');
                 },
             });
         });

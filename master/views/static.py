@@ -33,29 +33,3 @@ def change(request):
 
 def create(request):
     return render(request, 'create.html')
-
-
-# ----------------------------------------------------------------
-
-def registerTab(request):
-    return render(request, 'register_tab.html')
-
-
-def loginTab(request):
-    return render(request, 'login_tab.html')
-
-
-def productTab(request):
-    return render(request, 'product_tab.html')
-
-
-def shopTab(request):
-    return render(request, 'shop_tab.html')
-
-
-def sorting(request):
-    return render(request, 'sorting.html')
-
-
-def userProducts(request):
-    return render(request, 'user_products.html')

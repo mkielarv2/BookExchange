@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'djangoBookExchange.urls'
@@ -147,6 +149,20 @@ ACCOUNT_ACTIVATION_DAYS = 7  # One-week activation window
 
 AUTHENTICATION_BACKENDS = ['djangoBookExchange.EmailBackend.EmailBackend']
 
+# EMAIL CONFIGURATION
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'bookswappproject@gmail.com'
+EMAIL_HOST_PASSWORD = ''  # TODO tu wkleić haslo do konta
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+# HEROKU CONFIGURATION
+
 import django_heroku
 
 django_heroku.settings(locals())
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

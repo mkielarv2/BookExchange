@@ -53,10 +53,10 @@
                 for (let i = 0; i < data.length; i++) {
                     console.log(data[i])
                     let hyperlink = "/";
-                    let imgSrc = "https://via.placeholder.com/600x500";
-                    let title = data[i].title
-                    let author = data[i].author
-                    let description = data[i].description
+                    let imgSrc = data[i].images[0] || "https://via.placeholder.com/600x500";
+                    let title = data[i].title;
+                    let author = data[i].author;
+                    let description = data[i].description;
 
                     // language=HTML
                     let template = "<div class=\"card-deck col-xl-2 col-lg-3 col-md-4 col-md-12\">\n    <div class=\"card\">\n        <a href=\"" + hyperlink + "\">\n            <img src=\"" + imgSrc + "\" class=\"card-img-top\">\n        </a>\n        <div class=\"card-body\">\n            <h4 class=\"card-title\">\n                <a href=\"" + hyperlink + "\">" + title + "</a>\n            </h4>\n        </div>\n        <ul class=\"list-group list-group-flush\">\n            <li class=\"list-group-item\">Autor: " + author + "</li>\n            <li class=\"list-group-item\">Wydanie: " + description + "</li>\n        </ul>\n    </div>\n</div>";
