@@ -15,9 +15,7 @@ class Tab {
     show(e) {
         // jeśli istnieje event, to zbiera dane
         if (typeof e === 'object') {
-            inboxid = e.target.dataset['data'];
-
-            console.log(inboxid);
+            productLoad(e);
         }
         Nav.hide()
         this.tab.classList.add(this.htmlClass);
