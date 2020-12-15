@@ -111,7 +111,7 @@
             <div data-id="product-id">
                 <div class="product_image">
                     <!-- jeśli będzie kilka zdjęć, to wyświetlić tylko jedno z nich -->
-                    <img src="test.png" alt="">
+                    <img src="{% static 'Images/test.png' %}" alt="">
                 </div>
                 <!-- wypisanie podstawowych info o danym listowaniu -->
                 <div class="product_info">
@@ -125,7 +125,7 @@
             <!-- reszta to samo, zostawiam żeby Wam schemat wzoru zostawić -->
             <div data-id="product-id">
                 <div class="product_image">
-                    <img src="test.png" alt="">
+                    <img src="{% static 'Images/test.png' %}" alt="">
                 </div>
                 <div class="product_info">
                     <div>Wacław Wawrzyniak</div>
@@ -136,7 +136,7 @@
             <br/>
             <div data-id="product-id">
                 <div class="product_image">
-                    <img src="test.png" alt="">
+                    <img src="{% static 'Images/test.png' %}" alt="">
                 </div>
                 <div class="product_info">
                     <div>Wacław Wawrzyniak</div>
@@ -155,9 +155,9 @@
             <div class="container">
                 <!-- tutaj będzie div z wyświetlaniem fotosów. jeszcze go dopiszę potem -->
                 <div class="photo">
-                    <img src="test.png" alt="">
-                    <img src="test.png" alt="">
-                    <img src="test.png" alt="">
+                    <img src="{% static 'Images/test.png' %}" alt="">
+                    <img src="{% static 'Images/test.png' %}" alt="">
+                    <img src="{% static 'Images/test.png' %}" alt="">
                     <!-- Wypisanie ścieżek do zdjęć danego produktu, żeby potem js'em je wyświetlić -->
                     <div class="photo_names" style="display: none;">
                         <i>*ścieżka do foto nr 1*</i>
@@ -290,7 +290,7 @@
                 <div>
                     <!-- zdjęcie -->
                     <div>
-                        <img src="test.png" alt="">
+                        <img src="{% static 'Images/test.png' %}" alt="">
                     </div>
                     <!-- dane -->
                     <div>
@@ -318,7 +318,7 @@
                 <div>
                     <!-- zdjęcie -->
                     <div>
-                        <img src="test.png" alt="">
+                        <img src="{% static 'Images/test.png' %}" alt="">
                     </div>
                     <!-- dane -->
                     <div>
@@ -335,7 +335,7 @@
                 <div>
                     <!-- zdjęcie -->
                     <div>
-                        <img src="test.png" alt="">
+                        <img src="{% static 'Images/test.png' %}" alt="">
                     </div>
                     <!-- dane -->
                     <div>
@@ -354,7 +354,7 @@
                 <div>
                     <!-- zdjęcie -->
                     <div>
-                        <img src="test.png" alt="">
+                        <img src="{% static 'Images/test.png' %}" alt="">
                     </div>
                     <!-- dane -->
                     <div>
@@ -388,5 +388,5 @@
 
     </body>
     <script type="text/javascript" src="{% static 'js/tabs.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/nav.js' %}nav.js"></script>
+    <script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
 </html>
