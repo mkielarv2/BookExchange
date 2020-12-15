@@ -20,6 +20,7 @@ $('#loginSubmit').click(function (e) {
         dataType: 'json',
         success: function (data) {
             Login.hide()
+            console.log(data.id)
         },
         error: function (data) {
             let err = JSON.parse(data.responseText);

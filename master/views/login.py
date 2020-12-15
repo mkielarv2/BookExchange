@@ -37,7 +37,8 @@ class Login(APIView):
 
         responsePayload = {
             "status": "success",
-            "redirect": resolve_url(settings.LOGIN_REDIRECT_URL)
+            "redirect": resolve_url(settings.LOGIN_REDIRECT_URL),
+            "id": user.id
         }
 
         response = Response(responsePayload, status=200)
