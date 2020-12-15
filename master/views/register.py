@@ -1,4 +1,5 @@
 import re
+from smtplib import SMTPSenderRefused
 
 from django.contrib.auth import password_validation
 from django.contrib.auth.models import User
@@ -43,14 +44,17 @@ class Register(APIView):
         user.set_password(password)
         user.save()
 
-        email_content = """
-        Witaj {},
-        Twoje konto na BookswAPP zostało utworzone. Zachęcamy do stworzenia Twojej pierwszej oferty albo odnalezienia interesujących Cię książek.
-        Życzymy pomyślnych wymian!
-        
-        Zespół BookswAPP
-        """.format(username)
+        try:
+            email_content = """
+            Witaj {},
+            Twoje konto na BookswAPP zostało utworzone. Zachęcamy do stworzenia Twojej pierwszej oferty albo odnalezienia interesujących Cię książek.
+            Życzymy pomyślnych wymian!
+            
+            Zespół BookswAPP
+            """.format(username)
 
-        send_mail('BookswAPP rejestracja', email_content, EMAIL_HOST_USER, [email], fail_silently=False)
+            send_mail('BookswAPP rejestracja', email_content, EMAIL_HOST_USER, [email], fail_silently=False)
+        except SMTPSenderRefused as e:
+            print(e)
 
         return Response({"status": "success"}, status=201)

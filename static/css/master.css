@@ -6,10 +6,6 @@
   font-family: arial;
   /* #9BD7FF */
 }
-body {
-    overflow-x: hidden;
-    overflow-y: auto;
-}
 .container
 {
   display: block;

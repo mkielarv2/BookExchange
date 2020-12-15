@@ -89,9 +89,9 @@ const SeeMessages = new Tab(Tabs[7]);
 //EventListenery
 document.querySelector("div.search_bar > div").addEventListener('click', () => Sorting.show());
 document.querySelector("div.shop").addEventListener('click', () => Product.show());
-document.querySelector("nav > div:nth-child(2) > div:nth-child(7) > div").addEventListener('click', () => AddProduct.show());
-document.querySelector("nav > div:nth-child(2) > div:nth-child(8) > div").addEventListener('click', () => CheckProducts.show());
-document.querySelector("nav > div:nth-child(2) > div:nth-child(9) > div").addEventListener('click', () => CheckMessages.show());
+document.querySelector(".add_products").addEventListener('click', () => AddProduct.show());
+document.querySelector(".manage_products").addEventListener('click', () => CheckProducts.show());
+document.querySelector(".check_messages").addEventListener('click', () => CheckMessages.show());
 document.querySelector("body > nav > div:nth-child(1) > div:nth-child(3)").addEventListener('click', () => Register.show());
 document.querySelector("body > nav > div:nth-child(1) > div:nth-child(4)").addEventListener('click', () => Login.show());
 // document.querySelector(".product_messages_owner > .container > div > div:nth-child(2) > .product_actions > div").addEventListener('click', () => SeeMessages.show())
