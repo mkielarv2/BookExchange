@@ -70,17 +70,17 @@ def get_offers(request):
     """Get offers"""
     filters = request.GET
     offers = Offers.objects.filter(is_deleted=False)
-    if 'category' in filters:
+    if 'category' in filters and len(filters['category']):
         offers = offers.filter(category__id=filters['category'])
-    if 'condition' in filters:
+    if 'condition' in filters and len(filters['condition']):
         offers = offers.filter(condition__id=filters['condition'])
-    if 'localization' in filters:
+    if 'localization' in filters and len(filters['localization']):
         offers = offers.filter(location__id=filters['localization'])
-    if 'author' in filters:
+    if 'author' in filters and len(filters['author']):
         offers = offers.filter(Q(author__contains=filters['author']) | Q(title__contains=filters['author']))
-    if 'title' in filters:
+    if 'title' in filters and len(filters['title']):
         offers = offers.filter(Q(author__contains=filters['title']) | Q(title__contains=filters['title']))
-    if 'sort' in filters:
+    if 'sort' in filters and len(filters['sort']):
         offers = offers.order_by(filters['sort'])
     serializer = OffersSerializer(offers, many=True)
     return JsonResponse(serializer.data, safe=False)

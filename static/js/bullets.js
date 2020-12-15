@@ -1,7 +1,7 @@
 class Bullet {
     constructor(obj) {
         this.bullets = obj.querySelectorAll('.bullet');
-        this.selection = undefined;
+        this.selection = '';
 
         for (const i of this.bullets)
             i.addEventListener('click', (e) => this.set(e));
@@ -18,7 +18,15 @@ class Bullet {
                 this.selection = i.dataset['bullet'];
             }
         }
-        Shop.load();
+        Shop.fetch();
+    }
+
+    update(obj) {
+        this.bullets = obj.querySelectorAll('.bullet');
+        this.selection = undefined;
+
+        for (const i of this.bullets)
+            i.addEventListener('click', (e) => this.set(e));
     }
 }
 

@@ -7,9 +7,11 @@ const getConditions = () => {
         success: function (data) {
             console.log(data)
             for (let i = 0; i < data.length; i++) {
-                conditionSelect.append('<div><div class="bullet" data-bullet="' + data[i].id + '"></div><div>' + data[i].condition + '</div></div>')
+                conditionSelect.innerHTML += '<div><div class="bullet" data-bullet="' + data[i].id + '"></div><div>' + data[i].condition + '</div></div>';
             }
-            const SortConditions = new Bullet(Bullets[1]);
+            SortConditions.update(Bullets[1]);
         }
     });
 }
+
+const SortConditions = new Bullet(Bullets[1]);
