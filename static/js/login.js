@@ -28,7 +28,6 @@ $('#loginSubmit').click(function (e) {
         dataType: 'json',
         success: function (data) {
             Login.hide()
-            console.log(data.id)
             loggedIn();
         },
         error: function (data) {
