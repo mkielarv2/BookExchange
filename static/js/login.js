@@ -5,9 +5,6 @@ $('#loginSubmit').click(function (e) {
 
     console.log("button login pressed")
 
-    // let button = $(this);
-    // button.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
-
     let emailField = $('#loginEmail');
     let passwordField = $('#loginPassword');
 
@@ -22,14 +19,12 @@ $('#loginSubmit').click(function (e) {
         data: payload,
         dataType: 'json',
         success: function (data) {
-            console.log(data.redirect);
+            Login.hide()
         },
         error: function (data) {
             let err = JSON.parse(data.responseText);
-            //todo show error to user
-            // $('.invalid-feedback').text(err.desc);
-            // $('.login input[name=pass1], .login input[name=name]').addClass('is-invalid');
-            // button.html('Zaloguj się');
+            $('.invalid-feedback').text(err.desc);
+            $('#loginEmail, #loginPassword').addClass('input_wrong');
         },
     });
 });
