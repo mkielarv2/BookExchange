@@ -19,7 +19,7 @@ class Bullet {
             }
         }
         Shop.fetch();
-    },
+    }
 
     update(obj) {
         this.bullets = obj.querySelectorAll('.bullet');
