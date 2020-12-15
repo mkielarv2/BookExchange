@@ -1,7 +1,7 @@
 class Bullet {
     constructor(obj) {
         this.bullets = obj.querySelectorAll('.bullet');
-        this.selection = undefined;
+        this.selection = '';
 
         for (const i of this.bullets)
             i.addEventListener('click', (e) => this.set(e));
