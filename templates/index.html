@@ -23,35 +23,16 @@
 
     <body>
         <header></header>
-        {% block nav %}
-        {% endblock %}
-
-        {% block search %}
-        {% endblock %}
-
-        {% block sort %}
-        {% endblock %}
-
-        {% block shop %}
-        {% endblock %}
-
-        {% block product %}
-        {% endblock %}
-
-        {% block register %}
-        {% endblock %}
-
-        {% block login %}
-        {% endblock %}
-
-        {% block add %}
-        {% endblock %}
-
-        {% block products %}
-        {% endblock %}
-
-        {% block messages %}
-        {% endblock %}
+        {% include 'nav.html' %}
+        {% include 'search.html' %}
+        {% include 'sort.html' %}
+        {% include 'shop.html' %}
+        {% include 'product.html' %}
+        {% include 'register.html' %}
+        {% include 'login.html' %}
+        {% include 'add.html' %}
+        {% include 'products.html' %}
+        {% include 'messages.html' %}
     </body>
 
     <script type="text/javascript" src="{% static 'js/tabs.js' %}"></script>
