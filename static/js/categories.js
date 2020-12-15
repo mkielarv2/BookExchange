@@ -6,7 +6,7 @@ const getCategories = () => {
         type: 'GET',
         success: function (data) {
             for (let i = 0; i < data.length; i++) {
-                categorySelect.append("<option value=" + data[i].id + ">" + data[i].name + "</option>")
+                categorySelect.innerHTML += "<option value=" + data[i].id + ">" + data[i].name + "</option>";
             }
         }
     });

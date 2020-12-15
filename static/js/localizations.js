@@ -6,7 +6,7 @@ const getLocalizations = () => {
         type: 'GET',
         success: function (data) {
             for (let i = 0; i < data.length; i++) {
-                localizationSelect.append("<option value=" + data[i].id + ">" + data[i].name + "</option>")
+                localizationSelect.innerHTML += "<option value=" + data[i].id + ">" + data[i].name + "</option>";
             }
         }
     });
