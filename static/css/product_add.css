@@ -1,0 +1,90 @@
+.add_product
+{
+  position: fixed;
+  top: 30vh;
+  height: 70%;
+  width: 100vw;
+  width: 100%;
+  box-shadow: 1vh 1vh 2vh #707070;
+}
+.add_product .container
+{
+  text-align: center;
+  padding: 4vh 0 0;
+  margin: 0 0 4vh;
+  box-shadow: 1vh 1vh 2vh #707070;
+}
+.add_product > .header
+{
+  display: block;
+  position: absolute;
+  z-index: 5;
+  top: 0vh;
+  text-align: center;
+  width: 80%; left: 10%; top: -4vh;
+  background: white;
+  box-shadow: 0.2vh 0.2vh 1vh #707070; border-radius: 20px;
+  height: 6vh;
+  font-size: 1.2em; line-height: 6vh;
+}
+.add_product  > .closer
+{
+  top: -4vh !important;
+  right: 10% !important;
+  margin: 0 !important;
+  border-left: 1px solid #707070; box-shadow: none;
+}
+.add_product .container p
+{
+  font-weight: bold;
+}
+.add_product .container hr
+{
+  border-color: white;
+  outline: none;
+  width: 80%; margin: 1vh auto;
+}
+.add_product .container select
+{
+  text-align-last: center;
+  width: 60%; height: 5vh;
+  font-size: 1em;
+  margin-bottom: 3vh;
+}
+.add_product .container > div
+{
+  text-align: center;
+  font-size: 1em;
+  display: grid;
+  grid-template-columns: 10% 40%;
+  width: 80%;
+  margin: 1vh 25%;
+}
+.add_product input
+{
+  padding: 0 2%;
+  width: 75%; height: 5vh;
+  margin: 1vh auto;
+  outline: none;
+  border: 1px solid #707070; border-radius: 5px;
+}
+.add_product .uploader
+{
+  margin: 2vh 10% !important;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr !important;
+}
+.add_product .uploader > div
+{
+  width: 14.4vw; height: 14.4vw;
+  margin: auto;
+  border: 2px dashed #707070;
+  text-align: center; line-height: 14.4vw;
+}
+.add_product .button
+{
+  display: block !important;
+  text-align: center;
+  font-size: 1em;
+  margin: 4vh auto 10vh !important;
+}

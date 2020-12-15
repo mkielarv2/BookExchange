@@ -1,0 +1,79 @@
+div.product
+{
+  background: white;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+}
+/* zdjęcie */
+body > div.product > div > div.photo
+{
+  margin-top: -2.5vh;
+  height: 40vh; width: 160%;
+  background: #EEEEEE;
+}
+body > div.product > div > div.photo > img
+{
+  float: left;
+  display: block;
+  margin: 2.5vh auto;
+  height: 35vh;
+}
+body > div.product > div > div.photo > img:nth-child(odd)
+{
+  padding: 2.5vh auto;
+  height: 25vh;
+}
+body > div.product > div > div.photo > img:nth-child(even)
+{
+  padding: 2.5vh auto;
+  height: 35vh;
+}
+/* pasek z podstawowymi infromacjami o książce */
+div.product > div > div.bar
+{
+  width: 100%;
+  height: 10vh;
+  background: #9bd7ff;
+  border-bottom: 0.1vh solid #68b9ff;
+  box-shadow: 0vh 1vh 5vh #9bd7ff;
+}
+/* tytuł */
+div.product > div > div.bar > div
+{
+  padding: 0.5vh 10% 0;
+}
+div.product > div > div.bar > div:nth-child(1)
+{
+  color: white;
+  font-size: 1.75em;
+  font-weight: bold;
+}
+div.product > div > div.bar > div:nth-child(2)
+{
+  font-size: 1.5em;
+}
+/* tablica z informacjami o ogłoszeniu */
+div.product > div > div.info
+{
+  width: 80%;
+  margin: 10%;
+}
+div.product > div > div.info hr
+{
+  margin: 5% 0;
+  width: 100%;
+}
+div.product > div > div.info > div
+{
+  font-size: 1.2em;
+}
+div.product > div > div.info > div > p:first-child
+{
+  font-style: italic;
+}
+div.product > div > div.info > div > p:last-child
+{
+  margin: 1% 5%;
+  font-size: 1em !important;
+}

@@ -1,0 +1,66 @@
+.user_messages
+{
+  position: fixed;
+  top: 30vh;
+  height: 70%;
+  width: 100vw;
+  width: 100%;
+  box-shadow: 0.1vh 0.1vh 0.2vh #707070;
+}
+.user_messages .container
+{
+  text-align: center;
+  padding: 4vh 0 0;
+  margin: 0 0 4vh;
+  box-shadow: 1vh 1vh 2vh #707070;
+}
+.user_messages > .header
+{
+  display: block;
+  position: absolute;
+  z-index: 5;
+  top: 0vh;
+  text-align: center;
+  width: 80%; left: 10%; top: -4vh;
+  background: white;
+  box-shadow: 0.2vh 0.2vh 1vh #707070; border-radius: 20px;
+  height: 6vh;
+  font-size: 1.2em; line-height: 6vh;
+}
+.user_messages  > .closer
+{
+  top: -4vh !important;
+  right: 10% !important;
+  margin: 0 !important;
+  border-left: 1px solid #707070; box-shadow: none;
+}
+
+/* okno osoby */
+.user_messages .container > div
+{
+  display: grid;
+  grid-template-columns: 80% 1fr;
+  width: 90%;
+  height: 10vh;
+  margin: 0 auto 2vh;
+  text-align: left !important;
+  box-shadow: 0.1vh 0.2vh 1vh lightgrey;
+  padding: 1vh 0;
+}
+.user_messages .container > div > div:nth-child(1)
+{
+  line-height: 10vh;
+  text-align: center;
+}
+.user_messages .container > div > div:nth-child(2)
+{
+  display: none;
+  margin: auto;
+  width: 2vh; height: 2vh;
+  border-radius: 50%;
+  background: orange;
+}
+.new_message
+{
+  display: block !important;
+}

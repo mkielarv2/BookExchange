@@ -1,0 +1,62 @@
+*
+{
+  margin: 0;
+  padding: 0;
+  color: #707070;
+  font-family: arial;
+  /* #9BD7FF */
+}
+.container
+{
+  display: block;
+  position: absolute;
+  height: 100%; width: 100%;
+  background: white;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.bullet
+{
+  transition: 1s;
+  text-align: center;
+  display: block;
+  height: 1em !important; width: 1em !important;
+  border: 1px solid #707070; border-radius: 50%;
+  background: white;
+}
+.bullet_active
+{
+  background: #9BD7FF;
+}
+
+.closer
+{
+  display: block;
+  top: 1em; right: 1em;
+  background: white;
+  z-index: 5;
+  position: absolute;
+  width: 3em !important;
+  height: 3em !important;
+  border-radius: 50%;
+  box-shadow: 0.2vh 0.2vh 2vh grey;
+}
+.tab
+{
+  top: 0;
+  left: 110%;
+  position: fixed;
+  transition: 0.5s;
+}
+.button
+{
+  width: 90%; height: 40px;
+  font-size: 1.2em;
+  margin: 4% auto 0;
+  text-align: center; line-height: 40px;
+  border: 1px solid #cacaca; border-radius: 5px;
+}
+.tabIsShown
+{
+  left: 0 !important;
+}

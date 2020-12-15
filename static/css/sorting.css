@@ -1,0 +1,62 @@
+.sorting
+{
+  position: fixed;
+  top: 30vh;
+  height: 40%;
+  width: 100vw;
+  width: 100%;
+  box-shadow: 1vh 1vh 2vh #707070;
+}
+.sorting .container
+{
+  text-align: center;
+  padding: 4vh 0 0;
+  margin: 0 0 4vh;
+  box-shadow: 1vh 1vh 2vh #707070;
+}
+.sorting > .header
+{
+  display: block;
+  position: absolute;
+  z-index: 5;
+  top: 0vh;
+  text-align: center;
+  width: 80%; left: 10%; top: -4vh;
+  background: white;
+  box-shadow: 0.2vh 0.2vh 1vh #707070; border-radius: 20px;
+  height: 6vh;
+  font-size: 1.5em; line-height: 6vh;
+}
+.sorting  > .closer
+{
+  top: -4vh !important;
+  right: 10% !important;
+  margin: 0 !important;
+  border-left: 1px solid #707070; box-shadow: none;
+}
+.sorting .container p
+{
+  font-weight: bold;
+}
+.sorting .container hr
+{
+  border-color: white;
+  outline: none;
+  width: 80%; margin: 1vh auto;
+}
+.sorting .container select
+{
+  text-align-last: center;
+  width: 60%; height: 5vh;
+  font-size: 1em;
+  margin-bottom: 3vh;
+}
+.sorting .container > div
+{
+  text-align: center;
+  font-size: 1em;
+  display: grid;
+  grid-template-columns: 10% 40%;
+  width: 80%;
+  margin: 1vh 25%;
+}

@@ -1,0 +1,107 @@
+.product_messages_owner
+{
+  position: fixed;
+  top: 30vh;
+  height: 70%;
+  width: 100vw;
+  width: 100%;
+  box-shadow: 0.1vh 0.1vh 0.2vh #707070;
+}
+.product_messages_owner .container
+{
+  text-align: center;
+  padding: 4vh 0 0;
+  margin: 0 0 4vh;
+  box-shadow: 1vh 1vh 2vh #707070;
+}
+.product_messages_owner > .header
+{
+  display: block;
+  position: absolute;
+  z-index: 5;
+  top: 0vh;
+  text-align: center;
+  width: 80%; left: 10%; top: -4vh;
+  background: white;
+  box-shadow: 0.2vh 0.2vh 1vh #707070; border-radius: 20px;
+  height: 6vh;
+  font-size: 1.2em; line-height: 6vh;
+}
+.product_messages_owner  > .closer
+{
+  top: -4vh !important;
+  right: 10% !important;
+  margin: 0 !important;
+  border-left: 1px solid #707070; box-shadow: none;
+}
+.product_messages_owner .container p
+{
+  font-weight: bold;
+}
+.product_messages_owner .container > p:nth-child(5)
+{
+  margin-top: 2vh;
+}
+.product_messages_owner .container hr
+{
+  border-color: white;
+  outline: none;
+  width: 80%; margin: 1vh auto;
+}
+/* okno produktu */
+.product_messages_owner .container > div
+{
+  display: grid;
+  grid-template-columns: 30% 1fr;
+  width: 90%;
+  margin: auto;
+  text-align: left !important;
+  box-shadow: 0.5vh 0.5vh 2vh lightgrey;
+  padding: 1vh 0;
+}
+.product_messages_owner .container img
+{
+  max-width: 90%;
+  margin-left: 5%;
+}
+.product_messages_owner .container .product_info
+{
+  height: 50%;
+  text-align: center;
+}
+/* autor */
+.product_messages_owner .container .product_info div:nth-child(1)
+{
+  font-weight: bold;
+}
+/* tytuł */
+.product_messages_owner .container .product_info div:nth-child(2)
+{
+
+}
+/* stan */
+.product_messages_owner .container .product_info div:nth-child(3)
+{
+  font-style: italic;
+}
+.product_messages_owner .container .product_actions
+{
+  height: 50%;
+}
+/* przeciski */
+.product_messages_owner .container .product_actions
+{
+  display: table;
+  margin: -2px 1vw 0 !important;
+  height: 50%;
+  width: 90%;
+}
+.product_messages_owner .container .product_actions div
+{
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 1.5em;
+  height: 40%;
+  background: #9BD7FF; border-color: #9BD7FF;
+  color: white;
+}

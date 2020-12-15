@@ -1,0 +1,42 @@
+header
+{
+  z-index: 2;
+  position: fixed;
+  width: 100%; height: 8vh;
+  background: #9BD7FF;
+}
+
+/* wyszukiwarka */
+.search_bar
+{
+  width: 90%; height: 8vh;
+  display: inline-block;
+  margin: 10vh 5% 2vh;
+  border: 0.1vh solid #DBDBDB; border-radius: 1vh;
+  background: #f9f9f9;
+}
+.search_bar input
+{
+  font-size: 1.5em;
+  width: 80%; height: 80%;
+  display: block;
+  margin: 2.5% auto;
+  border: 0; border-radius: 3px;
+  background: #f9f9f9;
+}
+.search_bar input:focus
+{
+  outline: none;
+}
+/* przycisk otwarcia sortowania */
+.search_bar > div
+{
+  z-index: 1;
+  right: 10%; top: 11.5vh;
+  display: block;
+  position: absolute;
+  width: 5vh; height: 5vh;
+  background: white;
+  border: 1px solid #dbdbdb; border-radius: 5px;
+  text-align: center; line-height: 5vh;
+}

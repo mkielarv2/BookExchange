@@ -1,0 +1,67 @@
+nav
+{
+  position: fixed;
+  display: block;
+  top: 0; left: -100%;
+  z-index: 7;
+  width: 100%; height: 100%;
+  transition: 0.5s;
+}
+.nav_displayed
+{
+  position: absolute;
+  left: 1000% !important;
+}
+.nav_shown
+{
+  left: 0;
+}
+nav > div
+{
+  z-index: 5;
+  float: left;
+  width: 70%; height: 100%;
+  background: white;
+  box-shadow: 0.1vh 0 2vh #707070;
+}
+/* czarne tło za navem */
+nav > div:last-child
+{
+  z-index: 6 !important;
+  width: 30%; height: 100%;
+  background: rgba(0,0,0,0.0);
+  box-shadow: none;
+  transition: 0.2s;
+}
+.black_bg_shown
+{
+  background: rgba(0,0,0,0.4) !important;
+}
+nav > div p
+{
+  margin: 5% 5% 0;
+}
+nav > div hr
+{
+  width: 90%;
+  margin: auto;
+}
+nav > div .button2
+{
+  width: 90%; height: 40px;
+  font-size: 1.2em;
+  margin: 4% auto 0;
+  text-align: center; line-height: 40px;
+  border: 1px solid #cacaca; border-radius: 5px;
+}
+nav > div .button:nth-child(even)
+{
+  background: #9BD7FF; border-color: #9BD7FF;
+  color: white;
+}
+/* wygląd nawigacji po zalogowaniu */
+body > nav > div:nth-child(2) > div
+{
+  color: #707070 !important;
+  background: white !important; border-color: #cacaca !important;
+}
