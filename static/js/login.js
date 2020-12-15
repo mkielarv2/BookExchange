@@ -19,13 +19,13 @@ $('#loginSubmit').click(function (e) {
         data: payload,
         dataType: 'json',
         success: function (data) {
-            $('#loginError').val('')
             Login.hide()
             console.log(data.id)
         },
         error: function (data) {
             console.log(data)
             let err = JSON.parse(data.responseText);
+            $('#loginEmail, #loginPassword').addClass('input_wrong');
             $('#loginError').addClass('p_wrong');
         },
     });
