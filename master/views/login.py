@@ -18,6 +18,8 @@ class Login(APIView):
 
         payload = request.data
 
+        if 'email' not in payload or 'password' not in payload:
+            return Response({"status": "failure", "desc": "missing email or password field"}, status=400)
         email = payload["email"]
         password = payload["password"]
 
