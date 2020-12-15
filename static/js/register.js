@@ -39,13 +39,13 @@ $('.register button').click(function (e) {
     };
 
     $.ajax({
-        url: $("#register").attr("action"),
+        url: '{% url 'apiRegister' %}',
         type: 'POST',
         data: payload,
         dataType: 'json',
         success: function (data) {
             $('#container')
-                .html('<div class="card border-success" id="formCard">\n    <div class="card-body">\n        <div class="card-body text-success">\n            <h5 class="card-title">Success</h5>\n            <p class="card-text">Registration completed successfully!</p>\n            <a href="/"><button type="button" class="btn btn-primary btn-block">Login</button></a>\n        </div>\n    </div>\n</div>');
+                .html('<div class="card border-success" id="formCard">\n    <div class="card-body">\n        <div class="card-body text-success">\n            <h5 class="card-title">Success</h5>\n            <p class="card-text">Registration completed successfully!</p>\n            <a href="{% url 'login' %}"><button type="button" class="btn btn-primary btn-block">Login</button></a>\n        </div>\n    </div>\n</div>');
         },
         error: function (data) {
             let err = JSON.parse(data.responseText);

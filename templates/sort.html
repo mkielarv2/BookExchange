@@ -4,39 +4,36 @@
     <div class="closer"></div>
     <div class="container">
         <p>Gatunek</p>
-        <hr/>
+        <hr />
         <select name="genre" required>
-            <!-- jeśli dodawać gatunki do bazy to tutaj żeby je wypisać -->
-            <option value="*gatunek*">*gatunek*</option>
-            <option value="*gatunek*">*gatunek*</option>
-            <option value="*gatunek*">*gatunek*</option>
+            <option value="" disabled selected>- Wybierz kategorię -</option>
+        </select>
+        <p>Lokalizacja</p>
+        <hr />
+        <select name="localization" required>
+            <option value="" disabled selected>- Wybierz lokalizację -</option>
         </select>
         <!-- <i></i> to będą "bullety" do zaznaczania po zabawie z js -->
         <!-- sortowanie zrobię na podstawie już wyświetlonych produktów w js, tylko może jakieś dane (typu gatunek)
-          w dataset'cie by się przydało zrobić. Śmiało modyfikujcie, dodawajcie wedle uznania czy coś-->
+        w dataset'cie by się przydało zrobić. Śmiało modyfikujcie, dodawajcie wedle uznania czy coś-->
         <p>Opcje sortowania</p>
-        <hr/>
-        <div>
-            <div class="bullet"></div>
-            <div>Rosnąco (A-Z)</div>
+        <hr />
+        <div class="bullets">
+            <div><div class="bullet" data-bullet=""></div><div>Rosnąco (A-Z)</div></div>
+            <div><div class="bullet" data-bullet="-"></div><div>Majeljąco (Z-A)</div></div>
         </div>
-        <div>
-            <div class="bullet"></div>
-            <div>Majeljąco (Z-A)</div>
+        <p>Stan książki</p>
+        <hr />
+        <div class="bullets">
+            <div><div class="bullet" data-bullet=""></div><div>Rosnąco (A-Z)</div></div>
+            <div><div class="bullet" data-bullet="-"></div><div>Majeljąco (Z-A)</div></div>
         </div>
         <p>Opcje sortowania</p>
-        <hr/>
-        <div>
-            <div class="bullet"></div>
-            <div>Autorzy</div>
-        </div>
-        <div>
-            <div class="bullet"></div>
-            <div>Gatunki</div>
-        </div>
-        <div>
-            <div class="bullet"></div>
-            <div>Tytuły</div>
+        <hr />
+        <div class="bullets">
+            <div><div class="bullet" data-bullet="author"></div><div>Autorzy</div></div>
+            <div><div class="bullet" data-bullet="date"></div><div>Data dodania</div></div>
+            <div><div class="bullet" data-bullet="title"></div><div>Tytuły</div></div>
         </div>
     </div>
 </div>

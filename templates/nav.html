@@ -1,39 +1,42 @@
 {% block nav %}
-    <nav>
-        <div>
-            <p>Logowanie</p>
-            <hr/>
-            <div class="button">
-                Zarejestruj się
-            </div>
-            <div class="button">
-                Zaloguj się
-            </div>
+<nav>
+    <div class="nav_displayed">
+        <p>Logowanie</p>
+        <hr />
+        <div class="button">
+            Zarejestruj się
         </div>
-
-        <div class="nav_displayed">
-            <p>Logowanie</p>
-            <hr/>
-            <p>Czytelnik <span style="font-weight: bold">*USER_NAME*</span></p>
-            <div class="button">
-                Ustawienia konta
-            </div>
-            <p>Akcje</p>
-            <hr/>
-            <div class="button2">
-                <i></i>
-                <div>Dodaj ogłoszenie</div>
-            </div>
-            <div class="button2">
-                <i></i>
-                <div>Zarządzaj ogłoszeniami</div>
-            </div>
-            <div class="button2">
-                <i></i>
-                <div>Sprawdź wiadomości</div>
-            </div>
+        <div class="button">
+            Zaloguj się
         </div>
+    </div>
 
-        <div></div>
-    </nav>
+    <div>
+        <p>Logowanie</p>
+        <hr />
+        <p>Czytelnik <span style="font-weight: bold">*USER_NAME*</span></p>
+        <div class="button">
+            Ustawienia konta
+        </div>
+        <div class="button">
+            Wyloguj się
+        </div>
+        <p>Akcje</p>
+        <hr />
+        <div class="button2 add_products">
+            <i></i>
+            <div>Dodaj ogłoszenie</div>
+        </div>
+        <div class="button2 manage_products">
+            <i></i>
+            <div>Zarządzaj ogłoszeniami</div>
+        </div>
+        <div class="button2 check_messages">
+            <i></i>
+            <div>Sprawdź wiadomości</div>
+        </div>
+    </div>
+
+    <div></div>
+</nav>
 {% endblock %}
