@@ -17,7 +17,10 @@ class Tab {
         if (typeof e === 'object') {
             inboxid = e.target.dataset['data'];
 
-            console.log(inboxid);
+            switch (this.func.name) {
+                case 'funcProductShow':
+                    productLoad(inboxid);
+            }
         }
         Nav.hide()
         this.tab.classList.add(this.htmlClass);
@@ -38,53 +41,26 @@ const LoadOrderMessages = {
 
         for (const opener of Openers)
             opener.addEventListener('click', (e) => SeeMessages.show(e))
-    },
-
-    loadOrders() {
-        //fetch danych
-        //[
-        //    {
-        //        "id": 29,
-        //        "user": {
-        //            "id": 1,
-        //            "username": "admin",
-        //            "email": "admin@bookswapp.com",
-        //            "user_rating": null
-        //        },
-        //        "category": {
-        //            "id": 1,
-        //            "name": "Criminal"
-        //        },
-        //        "condition": {
-        //            "id": 1,
-        //            "condition": "new"
-        //        },
-        //        "location": {
-        //            "id": 1,
-        //            "name": "Poznan"
-        //        },
-        //        "images": ["static/Images/5954b408c66525ad932faa693a647e3f.jpg"],
-        //        "date": "2020-12-14T01:45:41.261648Z",
-        //        "title": "Offer1", "author": "NOBODY",
-        //        "description": "kek",
-        //        "is_deleted": false
-        //    }
-        //]
     }
 }
 
 //Zbieranie wszystkich okienek w jeden obiekt
 const Tabs = document.querySelectorAll('.tab');
 
+const funcProductShow = (e) => {
+    Product.show(e);
+}
+
 //Nowe obiekty na bazie klasy
 const Sorting = new Tab(Tabs[0]);
-const Product = new Tab(Tabs[1]);
+const Product = new Tab(Tabs[1], funcProductShow);
 const Register = new Tab(Tabs[2]);
 const Login = new Tab(Tabs[3]);
 const AddProduct = new Tab(Tabs[4]);
 const CheckProducts = new Tab(Tabs[5]);
 const CheckMessages = new Tab(Tabs[6], LoadOrderMessages.addListeners);
 const SeeMessages = new Tab(Tabs[7]);
+
 
 //EventListenery
 document.querySelector("div.search_bar > div").addEventListener('click', () => Sorting.show());
