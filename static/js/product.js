@@ -1,8 +1,10 @@
 ﻿
 const productLoad = (e) => {
     const id = e.target.dataset['id'];
+
+    console.log(id);
     $.ajax({
-        url: '/offers/' + id + '/',
+        url: '/offers/' + id,
         type: 'GET',
         success: function (data) {
             let title = data.title;
