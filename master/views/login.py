@@ -13,9 +13,6 @@ class Login(APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self, request):
-        if request.user.is_authenticated:
-            return Response({"status": "failure", "redirect": resolve_url(settings.LOGIN_REDIRECT_URL)}, status=422)
-
         payload = request.data
 
         if 'email' not in payload or 'password' not in payload:
