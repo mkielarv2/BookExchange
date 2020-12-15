@@ -63,4 +63,9 @@
     <script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/login.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/register.js' %}"></script>
+    {% if user.is_authenticated %}
+        <script>
+            loggedIn()
+        </script>
+    {% endif %}
 </html>
