@@ -3,17 +3,17 @@
 <head>
     <meta charset="utf-8">
     <title>BookswAPP</title>
-    <link rel="stylesheet" href="master.css">
-    <link rel="stylesheet" href="shop.css">
-    <link rel="stylesheet" href="product.css">
-    <link rel="stylesheet" href="nav.css">
-    <link rel="stylesheet" href="top.css">
-    <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="sorting.css">
-    <link rel="stylesheet" href="manage.css">
-    <link rel="stylesheet" href="product_add.css">
-    <link rel="stylesheet" href="check_messages.css">
-    <link rel="stylesheet" href="see_messages.css">
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shop.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/top.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sorting.css' %}">
+    <link rel="stylesheet" href="{% static 'css/manage.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product_add.css' %}">
+    <link rel="stylesheet" href="{% static 'css/check_messages.css' %}">
+    <link rel="stylesheet" href="{% static 'css/see_messages.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 </head>
 <body>
@@ -345,25 +345,24 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="user_messages tab">
-        <div class="header">Skrzynka</div>
-        <div class="closer"></div>
-        <div class="container">
-            <div data-id="id">
-                <div>Tomek</div>
-                <div></div>
-            </div>
-            <div data-id="id">
-                <div>Andrzej</div>
-                <div class="new_message"></div>
+        <div class="user_messages tab">
+            <div class="header">Skrzynka</div>
+            <div class="closer"></div>
+            <div class="container">
+                <div data-id="id">
+                    <div>Tomek</div>
+                    <div></div>
+                </div>
+                <div data-id="id">
+                    <div>Andrzej</div>
+                    <div class="new_message"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-</body>
-  <script type="text/javascript" src="tabs.js"></script>
-  <script type="text/javascript" src="inputs.js"></script>
-  <script type="text/javascript" src="nav.js"></script>
+    </body>
+    <script type="text/javascript" src="{% static 'js/tabs.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/inputs.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
 </html>
