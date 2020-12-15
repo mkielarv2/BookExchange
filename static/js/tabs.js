@@ -17,10 +17,7 @@ class Tab {
         if (typeof e === 'object') {
             inboxid = e.target.dataset['data'];
 
-            switch (this.func.name) {
-                case 'funcProductShow':
-                    productLoad(inboxid);
-            }
+            console.log(inboxid);
         }
         Nav.hide()
         this.tab.classList.add(this.htmlClass);
@@ -43,17 +40,23 @@ const LoadOrderMessages = {
             opener.addEventListener('click', (e) => SeeMessages.show(e))
     }
 }
+const LoadProductsOpeners = {
+    addListeners() {
+        const Openers = document.querySelectorAll("[data-id]")
+
+        for (const opener of Openers)
+            opener.addEventListener('click', (e) => Product.show(e))
+    }
+}
 
 //Zbieranie wszystkich okienek w jeden obiekt
 const Tabs = document.querySelectorAll('.tab');
-
 const funcProductShow = (e) => {
     Product.show(e);
 }
-
 //Nowe obiekty na bazie klasy
 const Sorting = new Tab(Tabs[0]);
-const Product = new Tab(Tabs[1], funcProductShow);
+const Product = new Tab(Tabs[1], LoadProductsOpeners.addListeners);
 const Register = new Tab(Tabs[2]);
 const Login = new Tab(Tabs[3]);
 const AddProduct = new Tab(Tabs[4]);

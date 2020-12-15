@@ -1,5 +1,7 @@
 ﻿
-const productLoad = (id) => {
+const productLoad = (e) => {
+    const id = e.target.dataset['id'];
+
     console.log(id);
     $.ajax({
         url: '/offers/' + id,
