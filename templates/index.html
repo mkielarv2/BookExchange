@@ -1,366 +1,391 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pl">
-<head>
-    <meta charset="utf-8">
-    <title>BookswAPP</title>
-    <link rel="stylesheet" href="{% static 'css/master.css' %}">
-    <link rel="stylesheet" href="{% static 'css/shop.css' %}">
-    <link rel="stylesheet" href="{% static 'css/product.css' %}">
-    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
-    <link rel="stylesheet" href="{% static 'css/top.css' %}">
-    <link rel="stylesheet" href="{% static 'css/sorting.css' %}">
-    <link rel="stylesheet" href="{% static 'css/manage.css' %}">
-    <link rel="stylesheet" href="{% static 'css/product_add.css' %}">
-    <link rel="stylesheet" href="{% static 'css/check_messages.css' %}">
-    <link rel="stylesheet" href="{% static 'css/see_messages.css' %}">
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-</head>
-<body>
-    <header></header>
-    <nav>
-        <div>
-            <p>Logowanie</p>
-            <hr />
-            <div class="button">
-                Zarejestruj się
-            </div>
-            <div class="button">
-                Zaloguj się
-            </div>
-        </div>
-
-        <div class="nav_displayed">
-            <p>Logowanie</p>
-            <hr />
-            <p>Czytelnik <span style="font-weight: bold">*USER_NAME*</span></p>
-            <div class="button">
-                Ustawienia konta
-            </div>
-            <p>Akcje</p>
-            <hr />
-            <div class="button2">
-                <i></i>
-                <div>Dodaj ogłoszenie</div>
-            </div>
-            <div class="button2">
-                <i></i>
-                <div>Zarządzaj ogłoszeniami</div>
-            </div>
-            <div class="button2">
-                <i></i>
-                <div>Sprawdź wiadomości</div>
-            </div>
-        </div>
-
-        <div></div>
-    </nav>
-    <div class="search_bar">
-        <input type="text" name="" value="" placeholder="Wyszukaj książkę...">
-        <div>
-            X
-        </div>
-    </div>
-
-    <div class="sorting tab">
-        <div class="header">Sortowanie</div>
-        <div class="closer"></div>
-        <div class="container">
-            <p>Gatunek</p>
-            <hr />
-            <select name="genre" required>
-                <!-- jeśli dodawać gatunki do bazy to tutaj żeby je wypisać -->
-                <option value="*gatunek*">*gatunek*</option>
-                <option value="*gatunek*">*gatunek*</option>
-                <option value="*gatunek*">*gatunek*</option>
-            </select>
-            <!-- <i></i> to będą "bullety" do zaznaczania po zabawie z js -->
-            <!-- sortowanie zrobię na podstawie już wyświetlonych produktów w js, tylko może jakieś dane (typu gatunek)
-              w dataset'cie by się przydało zrobić. Śmiało modyfikujcie, dodawajcie wedle uznania czy coś-->
-            <p>Opcje sortowania</p>
-            <hr />
-            <div><div class="bullet"></div><div>Rosnąco (A-Z)</div></div>
-            <div><div class="bullet"></div><div>Majeljąco (Z-A)</div></div>
-            <p>Opcje sortowania</p>
-            <hr />
-            <div><div class="bullet"></div><div>Autorzy</div></div>
-            <div><div class="bullet"></div><div>Gatunki</div></div>
-            <div><div class="bullet"></div><div>Tytuły</div></div>
-        </div>
-    </div>
-    <!-- DIV do przegląania zamieszczonych ogłoszeń -->
-    <div class="shop">
-        <!-- w data-id potrzebne jest id produktu,
-        żebym ajaxem wysłał zapytanko o wyświetlenie konkretnego produktu -->
-        <div data-id="product-id">
-            <div class="product_image">
-                <!-- jeśli będzie kilka zdjęć, to wyświetlić tylko jedno z nich -->
-                <img src="test.png" alt="">
-            </div>
-            <!-- wypisanie podstawowych info o danym listowaniu -->
-            <div class="product_info">
-                <div>Wacław Wawrzyniak</div>
-                <div>Język polski</div>
-                <div>Używana</div>
-            </div>
-        </div>
-        <!-- rozdzielnik. super by było jakbyście dali go radę nie wyświetlać na końcu -->
-        <br />
-        <!-- reszta to samo, zostawiam żeby Wam schemat wzoru zostawić -->
-        <div data-id="product-id">
-            <div class="product_image">
-                <img src="test.png" alt="">
-            </div>
-            <div class="product_info">
-                <div>Wacław Wawrzyniak</div>
-                <div>Język polski</div>
-                <div>Używana</div>
-            </div>
-        </div>
-        <br />
-        <div data-id="product-id">
-            <div class="product_image">
-                <img src="test.png" alt="">
-            </div>
-            <div class="product_info">
-                <div>Wacław Wawrzyniak</div>
-                <div>Język polski</div>
-                <div>Używana</div>
-            </div>
-        </div>
-        <br />
-    </div>
-
-    <!-- DIV do przeglądania konkretnego ogłoszenia -->
-    <div class="product tab">
-        <div class="closer">
-            <i class="fas fa-times"></i>
-        </div>
-        <div class="container">
-            <!-- tutaj będzie div z wyświetlaniem fotosów. jeszcze go dopiszę potem -->
-            <div class="photo">
-                <img src="test.png" alt="">
-                <img src="test.png" alt="">
-                <img src="test.png" alt="">
-                <!-- Wypisanie ścieżek do zdjęć danego produktu, żeby potem js'em je wyświetlić -->
-                <div class="photo_names" style="display: none;">
-                    <i>*ścieżka do foto nr 1*</i>
-                    <i>*ścieżka do foto nr 2*</i>
-                    <i>*ścieżka do foto nr 3*</i>
-                    itd...
-                </div>
-            </div>
-            <!-- niebieski pasek z głównym info o produkcie -->
-            <div class="bar">
-                <!-- uwaga: jest odwrotna kolejność niż w przypadku listowania wszystkich produktów przy shop_tab -->
-                <div>Język polski</div>
-                <div>Wacław Wawrzyniak</div>
-            </div>
-            <div class="info">
-                <div>Wystawone przez: <span style="font-weight: bold">*IMIĘ*</span></div>
-                <hr />
-                <div>
-                    <p>Opis wystawiającego<p>
-                    <p>*OPIS*</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="register tab">
-        <div class="header">Rejestracja</div>
-        <div class="closer"></div>
-        <div class="container">
-            <form>
-                <div>
-                    <div class="form-line-holder">
-                        <p class="annotation">Imię</p>
-                        <input type="text" name="name" required>
-                    </div>
-                    <div class="form-line-holder">
-                        <p class="annotation">E-mail</p>
-                        <input type="text" name="email" required>
-                    </div>
-                    <div class="form-line-holder">
-                        <p class="annotation">Hasło</p>
-                        <input type="text" name="pass1" required>
-                    </div>
-                    <div class="form-line-holder">
-                        <p class="annotation">Powtórz hasło</p>
-                        <input type="text" name="pass2" required>
-                    </div>
-                </div>
-
-                <button class="button" type="submit" value="Zaloguj">Zarejestruj się</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="login tab">
-        <div class="header">Logowanie</div>
-        <div class="closer"></div>
-        <div class="container">
-            <form>
-                <div>
-                    <div class="form-line-holder">
-                        <p class="annotation">Imię i nazwisko</p>
-                        <input type="text" name="name" required>
-                    </div>
-                    <div class="form-line-holder">
-                        <p class="annotation">Hasło</p>
-                        <input type="text" name="pass1" required>
-                    </div>
-                </div>
-
-                <button class="button" type="submit" value="Zaloguj">Zarejestruj się</button>
-            </form>
-        </div>
-    </div>
-
-
-
-    <!-- div do tworzenia ogłoszeń -->
-    <div class="add_product tab">
-        <div class="header">Dodawanie ogłoszenia</div>
-        <div class="closer"></div>
-        <div class="container">
-            <p>Gatunek</p>
-            <hr />
-            <select name="genre" required>
-                <!-- jeśli dodawać gatunki do bazy to tutaj żeby je wypisać -->
-                <option value="*gatunek*">*gatunek*</option>
-                <option value="*gatunek*">*gatunek*</option>
-                <option value="*gatunek*">*gatunek*</option>
-            </select>
-            <!-- <i></i> to będą "bullety" do zaznaczania po zabawie z js -->
-            <!-- sortowanie zrobię na podstawie już wyświetlonych produktów w js, tylko może jakieś dane (typu gatunek)
-            w dataset'cie by się przydało zrobić. Śmiało modyfikujcie, dodawajcie wedle uznania czy coś-->
-            <p>Stan książki</p>
-            <hr />
-            <div><div class="bullet"></div><div>Nowa</div></div>
-            <div><div class="bullet"></div><div>Używana</div></div>
-            <div><div class="bullet"></div><div>Zniszczona</div></div>
-            <p>Dane oferty</p>
-            <hr />
-            <input type="text" name="title" value="" placeholder="Tytuł książki...">
-            <input type="text" name="title" value="" placeholder="Autor/autorzy książki...">
-            <input type="text" name="title" value="" placeholder="Opis książki...">
-            <div class="uploader">
-                <div>+</div>
-                <div>+</div>
-                <div>+</div>
-                <div>+</div>
-                <div>+</div>
-            </div>
-            <div class="button">Dodaj produkt</div>
-        </div>
-
-    </div>
-
-    <div class="user_products tab">
-        <div class="header">Twoje ogłoszenia</div>
-        <div class="closer"></div>
-        <div class="container">
-            <p>Aktualne ogłoszenia</p>
-            <hr />
+    <head>
+        <meta charset="utf-8">
+        <title>BookswAPP</title>
+        <link rel="stylesheet" href="{% static 'css/master.css' %}">
+        <link rel="stylesheet" href="{% static 'css/shop.css' %}">
+        <link rel="stylesheet" href="{% static 'css/product.css' %}">
+        <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+        <link rel="stylesheet" href="{% static 'css/top.css' %}">
+        <link rel="stylesheet" href="{% static 'css/sorting.css' %}">
+        <link rel="stylesheet" href="{% static 'css/manage.css' %}">
+        <link rel="stylesheet" href="{% static 'css/product_add.css' %}">
+        <link rel="stylesheet" href="{% static 'css/check_messages.css' %}">
+        <link rel="stylesheet" href="{% static 'css/see_messages.css' %}">
+        <link rel="stylesheet" href="{% static 'css/login.css' %}">
+        <meta name="viewport"
+              content="user-scalable=no, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    </head>
+    <body>
+        <header></header>
+        <nav>
             <div>
-                <!-- zdjęcie -->
-                <div>
-                    <img src="test.png" alt="">
+                <p>Logowanie</p>
+                <hr/>
+                <div class="button">
+                    Zarejestruj się
                 </div>
-                <!-- dane -->
-                <div>
-                    <div class="product_info">
-                        <div>Wacław Wawrzyniak</div>
-                        <div>Język polski</div>
-                        <div>Używana</div>
-                    </div>
-                    <div class="product_actions">
-                        <p>Ustawienia ugłoszenia</p>
-                        <div class="button">Oznacz jako nieaktualne</div>
-                        <div class="button">Edycja</div>
-                    </div>
+                <div class="button">
+                    Zaloguj się
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="product_messages_owner tab">
-        <div class="header">Wiadmości</div>
-        <div class="closer"></div>
-        <div class="container">
-            <p>Aktualne ogłoszenia</p>
-            <hr />
-            <div>
-                <!-- zdjęcie -->
-                <div>
-                    <img src="test.png" alt="">
+            <div class="nav_displayed">
+                <p>Logowanie</p>
+                <hr/>
+                <p>Czytelnik <span style="font-weight: bold">*USER_NAME*</span></p>
+                <div class="button">
+                    Ustawienia konta
                 </div>
-                <!-- dane -->
-                <div>
-                    <div class="product_info">
-                        <div>Wacław Wawrzyniak</div>
-                        <div>Język polski</div>
-                        <div>Używana</div>
-                    </div>
-                    <div class="product_actions">
-                        <div class="button" data-inbox="id">Skrzynka</div>
-                    </div>
+                <p>Akcje</p>
+                <hr/>
+                <div class="button2">
+                    <i></i>
+                    <div>Dodaj ogłoszenie</div>
                 </div>
-            </div>
-            <div>
-                <!-- zdjęcie -->
-                <div>
-                    <img src="test.png" alt="">
+                <div class="button2">
+                    <i></i>
+                    <div>Zarządzaj ogłoszeniami</div>
                 </div>
-                <!-- dane -->
-                <div>
-                    <div class="product_info">
-                        <div>Wacław Wawrzyniak</div>
-                        <div>Język polski</div>
-                        <div>Używana</div>
-                    </div>
-                    <div class="product_actions">
-                        <div class="button" data-inbox="id">Skrzynka</div>
-                    </div>
+                <div class="button2">
+                    <i></i>
+                    <div>Sprawdź wiadomości</div>
                 </div>
             </div>
-            <p>Inne ogłoszenia</p>
-            <hr />
+
+            <div></div>
+        </nav>
+        <div class="search_bar">
+            <input type="text" name="" value="" placeholder="Wyszukaj książkę...">
             <div>
-                <!-- zdjęcie -->
-                <div>
-                    <img src="test.png" alt="">
-                </div>
-                <!-- dane -->
-                <div>
-                    <div class="product_info">
-                        <div>Wacław Wawrzyniak</div>
-                        <div>Język polski</div>
-                        <div>Używana</div>
-                    </div>
-                    <div class="product_actions">
-                        <div class="button" data-inbox="id">Skrzynka</div>
-                    </div>
-                </div>
+                X
             </div>
         </div>
 
-        <div class="user_messages tab">
-            <div class="header">Skrzynka</div>
+        <div class="sorting tab">
+            <div class="header">Sortowanie</div>
             <div class="closer"></div>
             <div class="container">
-                <div data-id="id">
-                    <div>Tomek</div>
-                    <div></div>
+                <p>Gatunek</p>
+                <hr/>
+                <select name="genre" required>
+                    <!-- jeśli dodawać gatunki do bazy to tutaj żeby je wypisać -->
+                    <option value="*gatunek*">*gatunek*</option>
+                    <option value="*gatunek*">*gatunek*</option>
+                    <option value="*gatunek*">*gatunek*</option>
+                </select>
+                <!-- <i></i> to będą "bullety" do zaznaczania po zabawie z js -->
+                <!-- sortowanie zrobię na podstawie już wyświetlonych produktów w js, tylko może jakieś dane (typu gatunek)
+                  w dataset'cie by się przydało zrobić. Śmiało modyfikujcie, dodawajcie wedle uznania czy coś-->
+                <p>Opcje sortowania</p>
+                <hr/>
+                <div>
+                    <div class="bullet"></div>
+                    <div>Rosnąco (A-Z)</div>
                 </div>
-                <div data-id="id">
-                    <div>Andrzej</div>
-                    <div class="new_message"></div>
+                <div>
+                    <div class="bullet"></div>
+                    <div>Majeljąco (Z-A)</div>
+                </div>
+                <p>Opcje sortowania</p>
+                <hr/>
+                <div>
+                    <div class="bullet"></div>
+                    <div>Autorzy</div>
+                </div>
+                <div>
+                    <div class="bullet"></div>
+                    <div>Gatunki</div>
+                </div>
+                <div>
+                    <div class="bullet"></div>
+                    <div>Tytuły</div>
                 </div>
             </div>
         </div>
+        <!-- DIV do przegląania zamieszczonych ogłoszeń -->
+        <div class="shop">
+            <!-- w data-id potrzebne jest id produktu,
+            żebym ajaxem wysłał zapytanko o wyświetlenie konkretnego produktu -->
+            <div data-id="product-id">
+                <div class="product_image">
+                    <!-- jeśli będzie kilka zdjęć, to wyświetlić tylko jedno z nich -->
+                    <img src="test.png" alt="">
+                </div>
+                <!-- wypisanie podstawowych info o danym listowaniu -->
+                <div class="product_info">
+                    <div>Wacław Wawrzyniak</div>
+                    <div>Język polski</div>
+                    <div>Używana</div>
+                </div>
+            </div>
+            <!-- rozdzielnik. super by było jakbyście dali go radę nie wyświetlać na końcu -->
+            <br/>
+            <!-- reszta to samo, zostawiam żeby Wam schemat wzoru zostawić -->
+            <div data-id="product-id">
+                <div class="product_image">
+                    <img src="test.png" alt="">
+                </div>
+                <div class="product_info">
+                    <div>Wacław Wawrzyniak</div>
+                    <div>Język polski</div>
+                    <div>Używana</div>
+                </div>
+            </div>
+            <br/>
+            <div data-id="product-id">
+                <div class="product_image">
+                    <img src="test.png" alt="">
+                </div>
+                <div class="product_info">
+                    <div>Wacław Wawrzyniak</div>
+                    <div>Język polski</div>
+                    <div>Używana</div>
+                </div>
+            </div>
+            <br/>
+        </div>
+
+        <!-- DIV do przeglądania konkretnego ogłoszenia -->
+        <div class="product tab">
+            <div class="closer">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="container">
+                <!-- tutaj będzie div z wyświetlaniem fotosów. jeszcze go dopiszę potem -->
+                <div class="photo">
+                    <img src="test.png" alt="">
+                    <img src="test.png" alt="">
+                    <img src="test.png" alt="">
+                    <!-- Wypisanie ścieżek do zdjęć danego produktu, żeby potem js'em je wyświetlić -->
+                    <div class="photo_names" style="display: none;">
+                        <i>*ścieżka do foto nr 1*</i>
+                        <i>*ścieżka do foto nr 2*</i>
+                        <i>*ścieżka do foto nr 3*</i>
+                        itd...
+                    </div>
+                </div>
+                <!-- niebieski pasek z głównym info o produkcie -->
+                <div class="bar">
+                    <!-- uwaga: jest odwrotna kolejność niż w przypadku listowania wszystkich produktów przy shop_tab -->
+                    <div>Język polski</div>
+                    <div>Wacław Wawrzyniak</div>
+                </div>
+                <div class="info">
+                    <div>Wystawone przez: <span style="font-weight: bold">*IMIĘ*</span></div>
+                    <hr/>
+                    <div>
+                        <p>Opis wystawiającego
+                        <p>
+                        <p>*OPIS*</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="register tab">
+            <div class="header">Rejestracja</div>
+            <div class="closer"></div>
+            <div class="container">
+                <form>
+                    <div>
+                        <div class="form-line-holder">
+                            <p class="annotation">Imię</p>
+                            <input type="text" name="name" required>
+                        </div>
+                        <div class="form-line-holder">
+                            <p class="annotation">E-mail</p>
+                            <input type="text" name="email" required>
+                        </div>
+                        <div class="form-line-holder">
+                            <p class="annotation">Hasło</p>
+                            <input type="text" name="pass1" required>
+                        </div>
+                        <div class="form-line-holder">
+                            <p class="annotation">Powtórz hasło</p>
+                            <input type="text" name="pass2" required>
+                        </div>
+                    </div>
+
+                    <button class="button" type="submit" value="Zaloguj">Zarejestruj się</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="login tab">
+            <div class="header">Logowanie</div>
+            <div class="closer"></div>
+            <div class="container">
+                <form>
+                    <div>
+                        <div class="form-line-holder">
+                            <p class="annotation">Imię i nazwisko</p>
+                            <input type="text" name="name" required>
+                        </div>
+                        <div class="form-line-holder">
+                            <p class="annotation">Hasło</p>
+                            <input type="text" name="pass1" required>
+                        </div>
+                    </div>
+
+                    <button class="button" type="submit" value="Zaloguj">Zarejestruj się</button>
+                </form>
+            </div>
+        </div>
+
+
+        <!-- div do tworzenia ogłoszeń -->
+        <div class="add_product tab">
+            <div class="header">Dodawanie ogłoszenia</div>
+            <div class="closer"></div>
+            <div class="container">
+                <p>Gatunek</p>
+                <hr/>
+                <select name="genre" required>
+                    <!-- jeśli dodawać gatunki do bazy to tutaj żeby je wypisać -->
+                    <option value="*gatunek*">*gatunek*</option>
+                    <option value="*gatunek*">*gatunek*</option>
+                    <option value="*gatunek*">*gatunek*</option>
+                </select>
+                <!-- <i></i> to będą "bullety" do zaznaczania po zabawie z js -->
+                <!-- sortowanie zrobię na podstawie już wyświetlonych produktów w js, tylko może jakieś dane (typu gatunek)
+                w dataset'cie by się przydało zrobić. Śmiało modyfikujcie, dodawajcie wedle uznania czy coś-->
+                <p>Stan książki</p>
+                <hr/>
+                <div>
+                    <div class="bullet"></div>
+                    <div>Nowa</div>
+                </div>
+                <div>
+                    <div class="bullet"></div>
+                    <div>Używana</div>
+                </div>
+                <div>
+                    <div class="bullet"></div>
+                    <div>Zniszczona</div>
+                </div>
+                <p>Dane oferty</p>
+                <hr/>
+                <input type="text" name="title" value="" placeholder="Tytuł książki...">
+                <input type="text" name="title" value="" placeholder="Autor/autorzy książki...">
+                <input type="text" name="title" value="" placeholder="Opis książki...">
+                <div class="uploader">
+                    <div>+</div>
+                    <div>+</div>
+                    <div>+</div>
+                    <div>+</div>
+                    <div>+</div>
+                </div>
+                <div class="button">Dodaj produkt</div>
+            </div>
+
+        </div>
+
+        <div class="user_products tab">
+            <div class="header">Twoje ogłoszenia</div>
+            <div class="closer"></div>
+            <div class="container">
+                <p>Aktualne ogłoszenia</p>
+                <hr/>
+                <div>
+                    <!-- zdjęcie -->
+                    <div>
+                        <img src="test.png" alt="">
+                    </div>
+                    <!-- dane -->
+                    <div>
+                        <div class="product_info">
+                            <div>Wacław Wawrzyniak</div>
+                            <div>Język polski</div>
+                            <div>Używana</div>
+                        </div>
+                        <div class="product_actions">
+                            <p>Ustawienia ugłoszenia</p>
+                            <div class="button">Oznacz jako nieaktualne</div>
+                            <div class="button">Edycja</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="product_messages_owner tab">
+            <div class="header">Wiadmości</div>
+            <div class="closer"></div>
+            <div class="container">
+                <p>Aktualne ogłoszenia</p>
+                <hr/>
+                <div>
+                    <!-- zdjęcie -->
+                    <div>
+                        <img src="test.png" alt="">
+                    </div>
+                    <!-- dane -->
+                    <div>
+                        <div class="product_info">
+                            <div>Wacław Wawrzyniak</div>
+                            <div>Język polski</div>
+                            <div>Używana</div>
+                        </div>
+                        <div class="product_actions">
+                            <div class="button" data-inbox="id">Skrzynka</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <!-- zdjęcie -->
+                    <div>
+                        <img src="test.png" alt="">
+                    </div>
+                    <!-- dane -->
+                    <div>
+                        <div class="product_info">
+                            <div>Wacław Wawrzyniak</div>
+                            <div>Język polski</div>
+                            <div>Używana</div>
+                        </div>
+                        <div class="product_actions">
+                            <div class="button" data-inbox="id">Skrzynka</div>
+                        </div>
+                    </div>
+                </div>
+                <p>Inne ogłoszenia</p>
+                <hr/>
+                <div>
+                    <!-- zdjęcie -->
+                    <div>
+                        <img src="test.png" alt="">
+                    </div>
+                    <!-- dane -->
+                    <div>
+                        <div class="product_info">
+                            <div>Wacław Wawrzyniak</div>
+                            <div>Język polski</div>
+                            <div>Używana</div>
+                        </div>
+                        <div class="product_actions">
+                            <div class="button" data-inbox="id">Skrzynka</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="user_messages tab">
+                <div class="header">Skrzynka</div>
+                <div class="closer"></div>
+                <div class="container">
+                    <div data-id="id">
+                        <div>Tomek</div>
+                        <div></div>
+                    </div>
+                    <div data-id="id">
+                        <div>Andrzej</div>
+                        <div class="new_message"></div>
+                    </div>
+                </div>
+            </div>
 
     </body>
     <script type="text/javascript" src="{% static 'js/tabs.js' %}"></script>
