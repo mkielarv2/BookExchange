@@ -1,7 +1,6 @@
-.shop
-{
-  width: 100%;
-  z-index: 1;
+.shop {
+    width: 100vw;
+    z-index: 1;
 }
 .shop > div
 {
