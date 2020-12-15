@@ -1,11 +1,11 @@
-$('.register button').click(function (e) {
+$('.login button').click(function (e) {
     e.preventDefault();
 
     let button = $(this);
     button.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
 
-    let emailField = $('.register input[name=name]');
-    let passwordField = $('.register input[name=pass1]');
+    let emailField = $('.login input[name=name]');
+    let passwordField = $('.login input[name=pass1]');
 
     let payload = {
         email: emailField.val(),
@@ -24,12 +24,12 @@ $('.register button').click(function (e) {
         error: function (data) {
             let err = JSON.parse(data.responseText);
             $('.invalid-feedback').text(err.desc);
-            $('.register input[name=pass1], .register input[name=name]').addClass('is-invalid');
+            $('.login input[name=pass1], .login input[name=name]').addClass('is-invalid');
             button.html('Submit');
         },
     });
 });
 
-$('.register input[name=name], .register input[name=pass1]').on('keyup', function () {
-    $('.register input[name=name], .register input[name=pass1]').removeClass('is-invalid');
+$('.login input[name=name], .register input[name=pass1]').on('keyup', function () {
+    $('.login input[name=name], .register input[name=pass1]').removeClass('is-invalid');
 });
