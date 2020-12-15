@@ -1,5 +1,6 @@
 import json
 
+from django.db.models import Q
 from django.http import JsonResponse
 from django.utils import timezone
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
@@ -76,9 +77,9 @@ def get_offers(request):
     if 'localization' in filters:
         offers = offers.filter(location__id=filters['localization'])
     if 'author' in filters:
-        offers = offers.filter(author__contains=filters['author'])
+        offers = offers.filter(Q(author__contains=filters['author']) | Q(title__contains=filters['author']))
     if 'title' in filters:
-        offers = offers.filter(title__contains=filters['title'])
+        offers = offers.filter(Q(author__contains=filters['title']) | Q(title__contains=filters['title']))
     if 'sort' in filters:
         offers = offers.order_by(filters['sort'])
     serializer = OffersSerializer(offers, many=True)
