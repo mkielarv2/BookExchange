@@ -1,25 +1,29 @@
+﻿
+const productLoad = (e) => {
+    const id = e.target.dataset['id'];
 
-const productLoad = () => {
-        const string = sortString();
+    console.log(id);
+    $.ajax({
+        url: '/offers/' + id,
+        type: 'GET',
+        success: function (data) {
+            let title = data.title;
+            let author = data.author;
 
-        $.ajax({
-            url: string,
-            type: 'GET',
-            success: function (data) {
-                for (let i = 0; i < data.length; i++) {
-                    console.log(data[i])
-                    let imgSrc = data[i].images[0] || "https://via.placeholder.com/600x500";
-                    let title = data[i].title;
-                    let author = data[i].author;
-                    let condition = data[i].condition;
-                    let category = data[i].category;
+            let template = '<div class="photo">';
 
-                    let template = '<div data-id="product-id">< div class="product_image" ><img src="' + imgSrc + '" alt=""></div><div class="product_info"><div>' + author + '</div><div>' + title + '</div><div>' + condition + '</div><div>' + category + '</div><div>' + localization + '</div></div>';
+            let imgSrc;
+            while (data.images[j] != null) {
+                imgSrc = data.images[j];
+                template += '<img src="' + imgSrc + '" alt="dupsko">';
+            }
 
-                    $(".shop").innerHTML += template;
-                }
-            },
-            error: function (data) {
-            },
-        });
+            template += '</div><div class="bar"><div>' + title + '</div><div>' + author + '</div></div><div class="info"><div>Wystawone przez: <span style="font-weight: bold">' + username + '</span></div><hr/><div><p>Opis wystawiającego</p><p>' + description + '</p></div></div>';
+
+            $('.product.tab > .container').innerHTML += template;
+        },
+        error: function (data) {
+        },
+    });
 }
+

@@ -9,6 +9,7 @@ const Shop = {
             url: string,
             type: 'GET',
             success: function (data) {
+                $(".shop").html("")
                 for (let i = 0; i < data.length; i++) {
                     console.log(data[i])
                     let imgSrc = data[i].images[0] || "https://via.placeholder.com/600x500";
