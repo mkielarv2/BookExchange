@@ -18,6 +18,8 @@ class Login(APIView):
 
         payload = request.data
 
+        if 'email' not in payload or 'password' not in payload:
+            return Response({"status": "failure", "desc": "missing email or password field"}, status=400)
         email = payload["email"]
         password = payload["password"]
 
@@ -27,7 +29,7 @@ class Login(APIView):
             responsePayload = {
                 "status": "failure",
                 "cause": "credentials",
-                "desc": "Invalid user or password."
+                "desc": "Invalid email or password."
             }
             return Response(responsePayload, status=401)
 
@@ -35,7 +37,8 @@ class Login(APIView):
 
         responsePayload = {
             "status": "success",
-            "redirect": resolve_url(settings.LOGIN_REDIRECT_URL)
+            "redirect": resolve_url(settings.LOGIN_REDIRECT_URL),
+            "id": user.id
         }
 
         response = Response(responsePayload, status=200)
