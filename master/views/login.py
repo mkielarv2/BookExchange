@@ -29,7 +29,7 @@ class Login(APIView):
             responsePayload = {
                 "status": "failure",
                 "cause": "credentials",
-                "desc": "Invalid user or password."
+                "desc": "Invalid email or password."
             }
             return Response(responsePayload, status=401)
 
