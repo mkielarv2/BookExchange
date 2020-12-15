@@ -32,14 +32,13 @@ $('#loginSubmit').click(function (e) {
             loggedIn();
         },
         error: function (data) {
-            console.log(data)
             let err = JSON.parse(data.responseText);
+            $('.invalid-feedback').text(err.desc);
             $('#loginEmail, #loginPassword').addClass('input_wrong');
-            $('#loginError').addClass('p_wrong');
         },
     });
 });
 
 $('#loginEmail, #loginPassword').on('keyup', function () {
-    $('#loginEmail, #loginPassword').removeClass('input_wrong');
+    $('#loginEmail, #loginPassword').removeClass('is-invalid');
 });
