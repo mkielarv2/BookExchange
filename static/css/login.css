@@ -86,7 +86,7 @@ div.eula {
     font-size: 1em;
 }
 .input_wrong{
-    border: 1px solid red;
+    border: 1px solid red !important;
 }
 .annotation {
     position: relative;
