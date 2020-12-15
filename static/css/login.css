@@ -85,9 +85,17 @@ div.eula {
     text-align: center;
     font-size: 1em;
 }
-.input_wrong{
+body > div.login.tab.tabIsShown > div.container > form > p
+{
+    display: none;
+}
+.p_wrong {
+    display: block !important;
+}
+.input_wrong {
     border: 1px solid red !important;
 }
+
 .annotation {
     position: relative;
     font-size: 1.5em !important;
