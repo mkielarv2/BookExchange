@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row justify-content-center" style="margin-top: 35px;">
+        <section class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
+            <div class="card-deck col-12" id="container">
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="usernameField">Username</label>
+                                <input type="text" class="form-control" id="usernameField"
+                                       aria-describedby="usernameHelp"
+                                       placeholder="Enter username"/>
+                                <div class="invalid-feedback" id="usernameFieldFeedback"></div>
+                                <small id="usernameHelp" class="form-text text-muted">Your username will be publicly visible</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="emailField">Email address</label>
+                                <input type="email" class="form-control" id="emailField" aria-describedby="emailHelp" placeholder="Enter email">
+                                <div class="invalid-feedback" id="emailFieldFeedback"></div>
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="passwordField">Password</label>
+                                <input type="password" class="form-control" id="passwordField" placeholder="Password">
+                                <div class="invalid-feedback" id="passwordFieldFeedback"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="repeatPasswordField">Repeat Password</label>
+                                <input type="password" class="form-control" id="repeatPasswordField" aria-describedby="repeatPasswordHelp" placeholder="Password">
+                                <div class="invalid-feedback" id="repeatPasswordFieldFeedback">Passwords does not match.</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block" id="submit-button" disabled>Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $('#usernameField, #emailField, #passwordField, #repeatPasswordField').on('keyup', function() {
+            $(this).removeClass('is-invalid');
+
+            let usernameField = $('#usernameField');
+            let emailField = $('#emailField');
+            let passwordField = $('#passwordField');
+            let repeatPasswordField = $('#repeatPasswordField');
+            let submit = $('#submit-button');
+
+            if (usernameField.val() !== '' && emailField.val() !== '' &&
+                    passwordField.val() !== '' && repeatPasswordField.val() !== '') {
+
+                if (passwordField.val() === repeatPasswordField.val()) {
+                    submit.removeAttr('disabled');
+                    repeatPasswordField.removeClass('is-invalid');
+                } else {
+                    submit.attr('disabled', 'disabled');
+                    repeatPasswordField.addClass('is-invalid');
+                }
+            } else {
+                submit.attr('disabled', 'disabled');
+            }
+
+        });
+
+        $('#submit-button').click(function(e) {
+            e.preventDefault();
+            let button = $(this);
+            button.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+
+            let usernameField = $('#usernameField');
+            let emailField = $('#emailField');
+            let passwordField = $('#passwordField');
+
+            let payload = {
+                username: usernameField.val(),
+                email: emailField.val(),
+                password: passwordField.val(),
+            };
+
+            $.ajax({
+                url: '{% url 'apiRegister' %}',
+                type: 'POST',
+                data: payload,
+                dataType: 'json',
+                success: function(data) {
+                    $('#container')
+                            .html('<div class="card border-success" id="formCard">\n    <div class="card-body">\n        <div class="card-body text-success">\n            <h5 class="card-title">Success</h5>\n            <p class="card-text">Registration completed successfully!</p>\n            <a href="{% url 'login' %}"><button type="button" class="btn btn-primary btn-block">Login</button></a>\n        </div>\n    </div>\n</div>');
+                },
+                error: function(data) {
+                    let err = JSON.parse(data.responseText);
+                    $('#' + err.cause + 'Feedback').text(err.desc);
+                    $('#' + err.cause).addClass('is-invalid');
+                    button.html('Submit');
+                },
+            });
+        });
+    </script>
+{% endblock %}

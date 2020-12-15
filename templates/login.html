@@ -1,68 +1,22 @@
-{% extends 'base.html' %}
-
-{% block content %}
-    <div class="row justify-content-center" style="margin-top: 35px;">
-        <section class="col-xl-4 col-lg-6 col-md-12 col-sm-12">
-            <div class="card-deck col-12">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <form method="post">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="emailField">Username</label>
-                                <input type="text" class="form-control" id="emailField" name="email" placeholder="Enter email"/>
-                            </div>
-                            <div class="form-group">
-                                <label for="passwordField">Password</label>
-                                <input type="password" name="password" class="form-control" id="passwordField"
-                                       placeholder="Password">
-                                <div class="invalid-feedback"></div>
-                            </div>
-                            <button id="submit" type="submit" value="Login" class="btn btn-primary btn-block">Login</button>
-                        </form>
+{% block login %}
+    <div class="login tab">
+        <div class="header">Logowanie</div>
+        <div class="closer"></div>
+        <div class="container">
+            <form>
+                <div>
+                    <div class="form-line-holder">
+                        <p class="annotation">Imię i nazwisko</p>
+                        <input type="text" name="name" required>
+                    </div>
+                    <div class="form-line-holder">
+                        <p class="annotation">Hasło</p>
+                        <input type="text" name="pass1" required>
                     </div>
                 </div>
-            </div>
-        </section>
+
+                <button class="button" type="submit" value="Zaloguj">Zarejestruj się</button>
+            </form>
+        </div>
     </div>
-{% endblock %}
-
-{% block script %}
-    <script>
-        $('#submit').click(function(e) {
-            e.preventDefault();
-
-            let button = $(this);
-            button.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
-
-            let emailField = $('#emailField');
-            let passwordField = $('#passwordField');
-
-            let payload = {
-                email: emailField.val(),
-                password: passwordField.val(),
-            };
-
-            $.ajax({
-                url: '{% url 'apiLogin' %}',
-                type: 'POST',
-                data: payload,
-                dataType: 'json',
-                success: function(data) {
-                    console.log(data.redirect);
-                    window.location = data.redirect;
-                },
-                error: function(data) {
-                    let err = JSON.parse(data.responseText);
-                    $('.invalid-feedback').text(err.desc);
-                    $('#passwordField, #emailField').addClass('is-invalid');
-                    button.html('Submit');
-                },
-            });
-        });
-
-        $('#emailField, #passwordField').on('keyup', function() {
-            $('#emailField, #passwordField').removeClass('is-invalid');
-        });
-    </script>
 {% endblock %}
