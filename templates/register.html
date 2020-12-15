@@ -7,23 +7,24 @@
                 <div>
                     <div class="form-line-holder">
                         <p class="annotation">Imię</p>
-                        <input type="text" name="name" required>
+                        <input id="usernameField" type="text" name="name" required>
                     </div>
                     <div class="form-line-holder">
                         <p class="annotation">E-mail</p>
-                        <input type="text" name="email" required>
+                        <input id="emailField" type="text" name="email" required>
                     </div>
                     <div class="form-line-holder">
                         <p class="annotation">Hasło</p>
-                        <input type="text" name="pass1" required>
+                        <input id="passwordField" type="password" name="pass1" required>
                     </div>
                     <div class="form-line-holder">
                         <p class="annotation">Powtórz hasło</p>
-                        <input type="text" name="pass2" required>
+                        <input id="repeatPasswordField" type="password" name="pass2" required>
                     </div>
+                    <p id="genericRegisterError"></p>
                 </div>
 
-                <button class="button" type="submit" value="Zaloguj">Zarejestruj się</button>
+                <button id="registerSubmit" class="button" type="submit" value="Zaloguj">Zarejestruj się</button>
             </form>
         </div>
     </div>
