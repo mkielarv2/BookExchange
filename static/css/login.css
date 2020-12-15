@@ -1,0 +1,184 @@
+﻿.register 
+{
+    position: fixed;
+    top: 30vh;
+    height: 70%;
+    width: 100vw;
+    width: 100%;
+    box-shadow: 1vh 1vh 2vh #707070;
+}
+
+.register .container 
+{
+    text-align: center;
+    padding: 4vh 0 0;
+    margin: 0 0 4vh;
+    box-shadow: 1vh 1vh 2vh #707070;
+}
+
+.register > .header 
+{
+    display: block;
+    position: absolute;
+    z-index: 5;
+    top: 0vh;
+    text-align: center;
+    width: 80%;
+    left: 10%;
+    top: -4vh;
+    background: white;
+    box-shadow: 0.2vh 0.2vh 1vh #707070;
+    border-radius: 20px;
+    height: 6vh;
+    font-size: 1.2em;
+    line-height: 6vh;
+}
+
+.register > .closer 
+{
+    top: -4vh !important;
+    right: 10% !important;
+    margin: 0 !important;
+    border-left: 1px solid #707070;
+    box-shadow: none;
+}
+
+.register .container p 
+{
+    width: 80%;
+    margin: auto;
+    font-weight: bold;
+}
+
+.register .container hr 
+{
+    border-color: white;
+    outline: none;
+    width: 80%;
+    margin: 1vh auto;
+}
+/* okno produktu */
+.register .container > div {
+display: grid;
+grid-template-columns: 30% 1fr;
+width: 90%;
+margin: auto;
+text-align: left !important;
+box-shadow: 0.5vh 0.5vh 2vh lightgrey;
+padding: 1vh 0;
+}
+
+.form-line-holder {
+    width: 90%;
+    margin: 0 5%;
+    text-align: center;
+    float: left;
+}
+
+div.eula {
+    margin: 2vh auto 2vh;
+}
+
+.form-line-holder input {
+    width: 80%;
+    height: 3em;
+    text-align: center;
+    font-size: 1em;
+}
+.annotation {
+    position: relative;
+    font-size: 1.5em !important;
+    transition: 0.3s ease;
+    top: 1.5em;
+    pointer-events: none;
+}
+
+.annotation_active {
+    top: 1.3vh !important;
+    font-size: 1em !important;
+    font-weight: bold;
+    background: white;
+    max-width: 20% !important;
+    width: auto !important;
+}
+
+.annotation:first-child {
+    margin-top: 0;
+}
+
+button {
+    width: 75% !important;
+    display: block !important;
+    text-align: center;
+    font-size: 1em;
+    margin: 4vh auto 10vh !important;
+}
+.button_enabled {
+    background: #9BD7FF;
+    border: #9BD7FF;
+    color: white;
+}
+
+.login {
+    position: fixed;
+    top: 30vh;
+    height: 70%;
+    width: 100vw;
+    width: 100%;
+    box-shadow: 1vh 1vh 2vh #707070;
+}
+
+.login .container {
+    text-align: center;
+    padding: 4vh 0 0;
+    margin: 0 0 4vh;
+    box-shadow: 1vh 1vh 2vh #707070;
+}
+
+.login > .header {
+    display: block;
+    position: absolute;
+    z-index: 5;
+    top: 0vh;
+    text-align: center;
+    width: 80%;
+    left: 10%;
+    top: -4vh;
+    background: white;
+    box-shadow: 0.2vh 0.2vh 1vh #707070;
+    border-radius: 20px;
+    height: 6vh;
+    font-size: 1.2em;
+    line-height: 6vh;
+}
+
+.login > .closer {
+    top: -4vh !important;
+    right: 10% !important;
+    margin: 0 !important;
+    border-left: 1px solid #707070;
+    box-shadow: none;
+}
+
+.login .container p {
+    width: 80%;
+    margin: auto;
+    font-weight: bold;
+}
+
+.login .container hr {
+    border-color: white;
+    outline: none;
+    width: 80%;
+    margin: 1vh auto;
+}
+/* okno produktu */
+.login .container > div {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    width: 90%;
+    margin: auto;
+    text-align: left !important;
+    box-shadow: 0.5vh 0.5vh 2vh lightgrey;
+    padding: 1vh 0;
+}
