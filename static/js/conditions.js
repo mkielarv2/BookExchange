@@ -1,5 +1,5 @@
 const getConditions = () => {
-    const conditionSelect = document.querySelector("body > div.sorting.tab.tabIsShown > div.container > div:nth-child(9)");
+    const conditionSelect = document.querySelector("body > div.sorting.tab.tabIsShown > div.container > div:nth-child(12)");
 
     $.ajax({
         url: '/offers/conditions',
