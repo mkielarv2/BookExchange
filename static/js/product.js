@@ -24,7 +24,9 @@ const productLoad = (e) => {
 
             template += '</div><div class="bar"><div>' + title + '</div><div>' + author + '</div></div><div class="info"><div>Wystawone przez: <span style="font-weight: bold">' + username + '</span></div><hr/><div><p>Opis wystawiającego</p><p>' + description + '</p></div></div>';
 
-            $('.product.tab > .container').innerHTML += template;
+            console.log(template)
+
+            $('#productContainer').append(template);
         },
         error: function (data) {
         },
