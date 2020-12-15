@@ -35,6 +35,27 @@
         {% include 'messages.html' %}
     </body>
 
+    {% csrf_token %}
+    <script>
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    let cookies = document.cookie.split(';')
+                    for (let i = 0; i < cookies.length; ++i) {
+                        let cookie = jQuery.trim(cookies[i]);
+                        if (cookie.substring(0, 10) === 'csrftoken=') {
+                            cookieValue = decodeURIComponent(cookie.substring(10));
+                            break;
+                        }
+                    }
+                }
+                if (!(/^http:./.test(settings.url) || /^https:./.test(settings.url))) {
+                    xhr.setRequestHeader("X-CSRFToken", cookieValue);
+                }
+            }
+        });
+    </script>
     <script type="text/javascript" src="{% static 'js/tabs.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/inputs.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
