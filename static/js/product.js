@@ -7,8 +7,6 @@ const productLoad = (e) => {
         success: function (data) {
             let title = data.title;
             let author = data.author;
-            let condition = data.condition;
-            let category = data.category;
 
             let template = '<div class="photo">';
 
@@ -20,7 +18,7 @@ const productLoad = (e) => {
 
             template += '</div><div class="bar"><div>' + title + '</div><div>' + author + '</div></div><div class="info"><div>Wystawone przez: <span style="font-weight: bold">' + username + '</span></div><hr/><div><p>Opis wystawiającego</p><p>' + description + '</p></div></div>';
 
-            $(".shop").innerHTML += template;
+            $('.product.tab > .container').innerHTML += template;
         },
         error: function (data) {
         },
