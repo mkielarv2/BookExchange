@@ -1,11 +1,15 @@
-$('.login button').click(function (e) {
+console.log("test login.js")
+
+$('#loginSubmit').click(function (e) {
     e.preventDefault();
 
-    let button = $(this);
-    button.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+    console.log("button login pressed")
 
-    let emailField = $('.login input[name=name]');
-    let passwordField = $('.login input[name=pass1]');
+    // let button = $(this);
+    // button.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+
+    let emailField = $('#loginEmail');
+    let passwordField = $('#loginPassword');
 
     let payload = {
         email: emailField.val(),
@@ -13,23 +17,23 @@ $('.login button').click(function (e) {
     };
 
     $.ajax({
-        url: '{% url 'apiLogin' %}',
+        url: $('#login').attr("action"),
         type: 'POST',
         data: payload,
         dataType: 'json',
         success: function (data) {
             console.log(data.redirect);
-            window.location = data.redirect;
         },
         error: function (data) {
             let err = JSON.parse(data.responseText);
-            $('.invalid-feedback').text(err.desc);
-            $('.login input[name=pass1], .login input[name=name]').addClass('is-invalid');
-            button.html('Submit');
+            //todo show error to user
+            // $('.invalid-feedback').text(err.desc);
+            // $('.login input[name=pass1], .login input[name=name]').addClass('is-invalid');
+            // button.html('Zaloguj się');
         },
     });
 });
 
-$('.login input[name=name], .register input[name=pass1]').on('keyup', function () {
-    $('.login input[name=name], .register input[name=pass1]').removeClass('is-invalid');
+$('#loginEmail, #loginPassword').on('keyup', function () {
+    $('#loginEmail, #loginPassword').removeClass('is-invalid');
 });

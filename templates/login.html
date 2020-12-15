@@ -3,19 +3,17 @@
         <div class="header">Logowanie</div>
         <div class="closer"></div>
         <div class="container">
-            <form>
+            <form id="login" action="{% url 'apiLogin' %}">
                 <div>
                     <div class="form-line-holder">
-                        <p class="annotation">Imię i nazwisko</p>
-                        <input type="text" name="name" required>
+                        <input id="loginEmail" type="email" placeholder="Email" required>
                     </div>
                     <div class="form-line-holder">
-                        <p class="annotation">Hasło</p>
-                        <input type="text" name="pass1" required>
+                        <input id="loginPassword" type="password" placeholder="Password" required>
                     </div>
                 </div>
 
-                <button class="button" type="submit" value="Zaloguj">Zarejestruj się</button>
+                <button id="loginSubmit" class="button" type="submit" value="Zaloguj">Zaloguj się</button>
             </form>
         </div>
     </div>
