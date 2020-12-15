@@ -27,18 +27,19 @@ $('#loginSubmit').click(function (e) {
         data: payload,
         dataType: 'json',
         success: function (data) {
+            $('#loginError').val('')
             Login.hide()
             console.log(data.id)
             loggedIn();
         },
         error: function (data) {
+            console.log(data)
             let err = JSON.parse(data.responseText);
-            $('.invalid-feedback').text(err.desc);
-            $('#loginEmail, #loginPassword').addClass('input_wrong');
+            $('#loginError').addClass('p_wrong');
         },
     });
 });
 
 $('#loginEmail, #loginPassword').on('keyup', function () {
-    $('#loginEmail, #loginPassword').removeClass('is-invalid');
+    $('#loginEmail, #loginPassword').removeClass('input_wrong');
 });
