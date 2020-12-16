@@ -29,6 +29,7 @@ $('#loginSubmit').click(function (e) {
         success: function (data) {
             Login.hide()
             loggedIn();
+            document.getElementById('my_id').value = data.id;
         },
         error: function (data) {
             let err = JSON.parse(data.responseText);
