@@ -7,6 +7,7 @@ const productLoad = (e) => {
         url: '/offers/' + id,
         type: 'GET',
         success: function (data) {
+            $('#productContainer').html('')
             let title = data.title;
             let author = data.author;
             let username = data.user.username;
