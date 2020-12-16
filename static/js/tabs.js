@@ -15,9 +15,7 @@ class Tab {
     show(e) {
         // jeśli istnieje event, to zbiera dane
         if (typeof e === 'object') {
-            inboxid = e.target.dataset['data'];
-
-            console.log(inboxid);
+            productLoad(e);
         }
         Nav.hide()
         this.tab.classList.add(this.htmlClass);
@@ -27,7 +25,6 @@ class Tab {
     hide() {
         this.tab.classList.remove(this.htmlClass);
     }
-
 }
 
 //funkcje wywołujące się po otwarciu któregoś tab'a
@@ -38,47 +35,25 @@ const LoadOrderMessages = {
 
         for (const opener of Openers)
             opener.addEventListener('click', (e) => SeeMessages.show(e))
-    },
+    }
+}
+const LoadProductsOpeners = {
+    addListeners() {
+        const Openers = document.querySelectorAll("[data-id]")
 
-    loadOrders() {
-        //fetch danych
-        //[
-        //    {
-        //        "id": 29,
-        //        "user": {
-        //            "id": 1,
-        //            "username": "admin",
-        //            "email": "admin@bookswapp.com",
-        //            "user_rating": null
-        //        },
-        //        "category": {
-        //            "id": 1,
-        //            "name": "Criminal"
-        //        },
-        //        "condition": {
-        //            "id": 1,
-        //            "condition": "new"
-        //        },
-        //        "location": {
-        //            "id": 1,
-        //            "name": "Poznan"
-        //        },
-        //        "images": ["static/Images/5954b408c66525ad932faa693a647e3f.jpg"],
-        //        "date": "2020-12-14T01:45:41.261648Z",
-        //        "title": "Offer1", "author": "NOBODY",
-        //        "description": "kek",
-        //        "is_deleted": false
-        //    }
-        //]
+        for (const opener of Openers)
+            opener.addEventListener('click', (e) => Product.show(e))
     }
 }
 
 //Zbieranie wszystkich okienek w jeden obiekt
 const Tabs = document.querySelectorAll('.tab');
-
+const funcProductShow = (e) => {
+    Product.show(e);
+}
 //Nowe obiekty na bazie klasy
 const Sorting = new Tab(Tabs[0]);
-const Product = new Tab(Tabs[1]);
+const Product = new Tab(Tabs[1], LoadProductsOpeners.addListeners);
 const Register = new Tab(Tabs[2]);
 const Login = new Tab(Tabs[3]);
 const AddProduct = new Tab(Tabs[4]);
@@ -86,7 +61,18 @@ const CheckProducts = new Tab(Tabs[5]);
 const CheckMessages = new Tab(Tabs[6], LoadOrderMessages.addListeners);
 const SeeMessages = new Tab(Tabs[7]);
 
+const logOut = () => {
+    $.ajax({
+        url: '/api/logout/',
+        type: 'POST',
+        success: function (data) {
+            window.location.reload(true);
+        }
+    });
+}
+
 //EventListenery
+document.querySelector("body > nav > div:nth-child(3) > div.button").addEventListener('click', () => logOut())
 document.querySelector("div.search_bar > div").addEventListener('click', () => Sorting.show());
 document.querySelector("div.shop").addEventListener('click', () => Product.show());
 document.querySelector(".add_products").addEventListener('click', () => AddProduct.show());

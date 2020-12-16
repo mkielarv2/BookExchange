@@ -5,43 +5,21 @@
         <div class="closer"></div>
         <div class="container">
             <p>Gatunek</p>
-            <hr/>
-            <select name="genre" required>
-                <!-- jeśli dodawać gatunki do bazy to tutaj żeby je wypisać -->
-                <option value="*gatunek*">*gatunek*</option>
-                <option value="*gatunek*">*gatunek*</option>
-                <option value="*gatunek*">*gatunek*</option>
-            </select>
-            <!-- <i></i> to będą "bullety" do zaznaczania po zabawie z js -->
-            <!-- sortowanie zrobię na podstawie już wyświetlonych produktów w js, tylko może jakieś dane (typu gatunek)
-            w dataset'cie by się przydało zrobić. Śmiało modyfikujcie, dodawajcie wedle uznania czy coś-->
+            <select id="createGenreSelect" name="genre" required></select>
+
             <p>Stan książki</p>
-            <hr/>
-            <div>
-                <div class="bullet"></div>
-                <div>Nowa</div>
-            </div>
-            <div>
-                <div class="bullet"></div>
-                <div>Używana</div>
-            </div>
-            <div>
-                <div class="bullet"></div>
-                <div>Zniszczona</div>
-            </div>
+            <select id="createConditionSelect" name="genre" required></select>
+
+            <p>Lokalizacja</p>
+            <select id="createLocationSelect" name="genre" required></select>
+
             <p>Dane oferty</p>
             <hr/>
-            <input type="text" name="title" value="" placeholder="Tytuł książki...">
-            <input type="text" name="title" value="" placeholder="Autor/autorzy książki...">
-            <input type="text" name="title" value="" placeholder="Opis książki...">
-            <div class="uploader">
-                <div>+</div>
-                <div>+</div>
-                <div>+</div>
-                <div>+</div>
-                <div>+</div>
-            </div>
-            <div class="button">Dodaj produkt</div>
+            <input id="createTitle" type="text" value="" placeholder="Tytuł książki...">
+            <input id="createAuthor" type="text" value="" placeholder="Autor/autorzy książki...">
+            <input id="createDescription" type="text" value="" placeholder="Opis książki...">
+            <input multiple type="file" class="form-control-file" id="fileInput">
+            <div id="createSubmit" class="button">Dodaj produkt</div>
         </div>
     </div>
 {% endblock %}
