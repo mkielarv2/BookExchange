@@ -18,6 +18,8 @@ $('#my_offers').click(function () {
 
                 let template = '<div data-id="' + id + '"><div class="product_image" ><img src="' + imgSrc + '" alt=""></div><div class="product_info"><div>' + author + '</div><div>' + title + '</div><div>' + condition + '</div><div>' + category + '</div><div>' + localization + '</div></div>';
 
+                template += '<button onclick="delete_my_offer('+ id +')">Aborcjuj mnie</button>'
+
                 $('#productContainer2').append(template);
             }
         },
@@ -25,3 +27,16 @@ $('#my_offers').click(function () {
         },
     });
 })
+
+function delete_my_offer(id) {
+    $.ajax({
+        url: '/offers/delete/' + id,
+        type: 'DELETE',
+        success: function (data) {
+            console.log('gut');
+        },
+        error: function (data) {
+            console.log('nicht gut');
+        },
+    });
+}
