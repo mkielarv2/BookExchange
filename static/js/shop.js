@@ -28,8 +28,6 @@ const Shop = {
             url: url,
             type: 'GET',
             success: function (data) {
-                console.log(">>>>>>>>>>>>>>>>>")
-                console.log(data)
                 $("#shopContainer").html('');
                 for (let i = 0; i < data.length; i++) {
                     console.log(data[i])
@@ -52,3 +50,5 @@ const Shop = {
         });
     }
 }
+
+document.querySelector("body > div.search_bar > input[type=text]").addEventListener('change', Shop.fetch);
