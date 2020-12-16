@@ -31,3 +31,5 @@ const Shop = {
         });
     }
 }
+
+document.querySelector("body > div.search_bar > input[type=text]").addEventListener('input', Shop.fetch);

@@ -34,6 +34,7 @@
         {% include 'add.html' %}
         {% include 'products.html' %}
         {% include 'messages.html' %}
+        <input type="hidden" id="my_id">
     </body>
 
     {% csrf_token %}
@@ -75,6 +76,8 @@
     {% if user.is_authenticated %}
         <script>
             loggedIn()
+            document.getElementById('my_id').value = {{ user.id }};
         </script>
     {% endif %}
+    <script type="text/javascript" src="{% static 'js/my_offers.js' %}"></script>
 </html>
