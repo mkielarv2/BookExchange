@@ -5,35 +5,35 @@
     <div class="container">
         <p>Gatunek</p>
         <hr />
-        <select name="genre" required>
+        <select id="sortGenreSelect" name="genre" required>
             <option value="" disabled selected>- Wybierz kategorię -</option>
         </select>
         <p>Lokalizacja</p>
         <hr />
-        <select name="localization" required>
+        <select id="sortLocationSelect" name="localization" required>
             <option value="" disabled selected>- Wybierz lokalizację -</option>
         </select>
-        <!-- <i></i> to będą "bullety" do zaznaczania po zabawie z js -->
-        <!-- sortowanie zrobię na podstawie już wyświetlonych produktów w js, tylko może jakieś dane (typu gatunek)
-        w dataset'cie by się przydało zrobić. Śmiało modyfikujcie, dodawajcie wedle uznania czy coś-->
         <p>Opcje sortowania</p>
         <hr />
-        <div class="bullets">
-            <div><div class="bullet" data-bullet=""></div><div>Rosnąco (A-Z)</div></div>
-            <div><div class="bullet" data-bullet="-"></div><div>Majeljąco (Z-A)</div></div>
-        </div>
+        <select id="sortOrderSelect" name="localization" required>
+            <option value="" disabled selected>- Wybierz sortowanie -</option>
+            <option value="">Rosnąco</option>
+            <option value="-">Malejąco</option>
+        </select>
         <p>Stan książki</p>
         <hr />
-        <div class="bullets">
-
-        </div>
+        <select id="sortConditionSelect" name="condition" required>
+            <option value="" disabled selected>- Wybierz stan -</option>
+        </select>
         <p>Opcje sortowania</p>
         <hr />
-        <div class="bullets">
-            <div><div class="bullet" data-bullet="author"></div><div>Autorzy</div></div>
-            <div><div class="bullet" data-bullet="date"></div><div>Data dodania</div></div>
-            <div><div class="bullet" data-bullet="title"></div><div>Tytuły</div></div>
-        </div>
+        <select id="sortAttributeSelect" name="condition" required>
+            <option value="" disabled selected>- Wybierz atrybut -</option>
+            <option value="author">Autor</option>
+            <option value="date">Data dodania</option>
+            <option value="title">Tytuł</option>
+        </select>
+        <button id="sortSubmitButton">Zastosuj</button>
     </div>
 </div>
 {% endblock %}

@@ -1,15 +1,36 @@
-window.addEventListener('load', () => {
+$(document).ready(function () {
     Shop.fetch()
 });
+
+var filter = {
+    category: undefined,
+    condition: undefined,
+    localization: undefined,
+    sort: undefined,
+    title: undefined
+}
+
 const Shop = {
     fetch() {
-        const string = sortString();
-            
+        let url = '/offers?'
+        if (filter.category !== undefined)
+            url += '&category=' + filter.category
+        if (filter.condition !== undefined)
+            url += '&condition=' + filter.condition
+        if (filter.localization !== undefined)
+            url += '&localization=' + filter.localization
+        if (filter.sort !== undefined)
+            url += '&sort=' + filter.sort
+        if (filter.title !== undefined)
+            url += '&title=' + filter.title
+
         $.ajax({
-            url: string,
+            url: url,
             type: 'GET',
             success: function (data) {
-                $(".shop").html('');
+                console.log(">>>>>>>>>>>>>>>>>")
+                console.log(data)
+                $("#shopContainer").html('');
                 for (let i = 0; i < data.length; i++) {
                     console.log(data[i])
                     let imgSrc = data[i].images[0] || "https://via.placeholder.com/600x500";

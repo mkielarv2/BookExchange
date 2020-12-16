@@ -71,10 +71,10 @@ const logOut = () => {
     });
 }
 
-document.querySelector("body > div.search_bar > input[type=text]").addEventListener('input', Shop.fetch);
+document.querySelector("body > div.search_bar > input[type=text]").addEventListener('input', () => Shop.fetch());
 
 //EventListenery
-document.querySelector("body > nav > div:nth-child(3) > div.button").addEventListener('click', () => logOut())
+// document.querySelector("body > nav > div:nth-child(3) > div.button").addEventListener('click', () => logOut())
 document.querySelector("div.search_bar > div").addEventListener('click', () => Sorting.show());
 document.querySelector("div.shop").addEventListener('click', () => Product.show());
 document.querySelector(".add_products").addEventListener('click', () => AddProduct.show());
