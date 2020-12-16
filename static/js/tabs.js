@@ -25,7 +25,6 @@ class Tab {
     hide() {
         this.tab.classList.remove(this.htmlClass);
     }
-
 }
 
 //funkcje wywołujące się po otwarciu któregoś tab'a
@@ -62,8 +61,18 @@ const CheckProducts = new Tab(Tabs[5]);
 const CheckMessages = new Tab(Tabs[6], LoadOrderMessages.addListeners);
 const SeeMessages = new Tab(Tabs[7]);
 
+const logOut = () => {
+    $.ajax({
+        url: '/api/logout/',
+        type: 'POST',
+        success: function (data) {
+            window.location.reload(true);
+        }
+    });
+}
 
 //EventListenery
+document.querySelector("body > nav > div:nth-child(2) > div.button").addEventListener('click', () => logOut())
 document.querySelector("div.search_bar > div").addEventListener('click', () => Sorting.show());
 document.querySelector("div.shop").addEventListener('click', () => Product.show());
 document.querySelector(".add_products").addEventListener('click', () => AddProduct.show());
