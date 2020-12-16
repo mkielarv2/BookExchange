@@ -15,7 +15,13 @@ class Tab {
     show(e) {
         // jeśli istnieje event, to zbiera dane
         if (typeof e === 'object') {
-            productLoad(e);
+            if (e.target.classList.contains('button')) {
+                const id = e.target.dataset['inbox'];
+
+                getOffersList(id);
+            }
+            else
+                productload(e);
         }
         Nav.hide()
         this.tab.classList.add(this.htmlClass);
@@ -31,12 +37,13 @@ class Tab {
 var inboxid = undefined;
 const LoadOrderMessages = {
     addListeners() {
-        const Openers = document.querySelectorAll("[data-data]")
+        const Openers = document.querySelectorAll("[data-inbox]")
 
         for (const opener of Openers)
             opener.addEventListener('click', (e) => SeeMessages.show(e))
     }
 }
+
 const LoadProductsOpeners = {
     addListeners() {
         const Openers = document.querySelectorAll("[data-id]")
@@ -59,7 +66,7 @@ const Login = new Tab(Tabs[3]);
 const AddProduct = new Tab(Tabs[4]);
 const CheckProducts = new Tab(Tabs[5]);
 const CheckMessages = new Tab(Tabs[6], LoadOrderMessages.addListeners);
-const SeeMessages = new Tab(Tabs[7]);
+const SeeMessages = new Tab(Tabs[7], );
 
 const logOut = () => {
     $.ajax({
@@ -71,10 +78,9 @@ const logOut = () => {
     });
 }
 
-document.querySelector("body > div.search_bar > input[type=text]").addEventListener('input', Shop.fetch);
 
 //EventListenery
-document.querySelector("body > nav > div:nth-child(3) > div.button").addEventListener('click', () => logOut())
+document.querySelector("body > nav > div:nth-child(2) > div.button").addEventListener('click', () => logOut())
 document.querySelector("div.search_bar > div").addEventListener('click', () => Sorting.show());
 document.querySelector("div.shop").addEventListener('click', () => Product.show());
 document.querySelector(".add_products").addEventListener('click', () => AddProduct.show());
