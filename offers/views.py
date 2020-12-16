@@ -77,9 +77,9 @@ def get_offers(request):
     if 'localization' in filters and len(filters['localization']) and filters['localization'] != 'undefined':
         offers = offers.filter(location__id=filters['localization'])
     if 'author' in filters and len(filters['author']) and filters['author'] != 'undefined':
-        offers = offers.filter(Q(author__contains=filters['author']) | Q(title__contains=filters['author']))
+        offers = offers.filter(Q(author__icontains=filters['author']) | Q(title__icontains=filters['author']))
     if 'title' in filters and len(filters['title']) and filters['title'] != 'undefined':
-        offers = offers.filter(Q(author__contains=filters['title']) | Q(title__contains=filters['title']))
+        offers = offers.filter(Q(author__icontains=filters['title']) | Q(title__icontains=filters['title']))
     if 'sort' in filters and len(filters['sort']) > 1 and filters['sort'] != 'undefined':
         offers = offers.order_by(filters['sort'])
     serializer = OffersSerializer(offers, many=True)
