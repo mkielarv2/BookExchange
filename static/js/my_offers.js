@@ -15,10 +15,15 @@ $('#my_offers').click(function () {
                 let condition = data[i].condition.condition;
                 let category = data[i].category.name;
                 let localization = data[i].location.name;
+                let id_deleted = data[i].is_deleted;
 
                 let template = '<div data-id="' + id + '"><div class="product_image" ><img src="' + imgSrc + '" alt=""></div><div class="product_info"><div>' + author + '</div><div>' + title + '</div><div>' + condition + '</div><div>' + category + '</div><div>' + localization + '</div></div>';
 
-                template += '<button onclick="delete_my_offer('+ id +')">Aborcjuj mnie</button>'
+                if(is_deleted === true) {
+                    template += '<button onclick="delete_my_offer('+ id +')" disabled>Oferta usunięta</button>'
+                } else {
+                    template += '<button onclick="delete_my_offer('+ id +')">Usuń ofertę</button>'
+                }
 
                 $('#productContainer2').append(template);
             }

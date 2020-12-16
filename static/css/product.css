@@ -11,6 +11,8 @@ body > div.product > div > div.photo
   margin-top: -2.5vh;
   height: 40vh; width: 160%;
   background: #EEEEEE;
+  overflow-y: hidden;
+  overflow-x: auto:
 }
 body > div.product > div > div.photo > img
 {
