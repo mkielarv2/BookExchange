@@ -71,7 +71,7 @@ const logOut = () => {
     });
 }
 
-document.querySelector('.shop').addEventListener('click', Shop.fetch);
+document.querySelector("body > div.search_bar > input[type=text]").addEventListener('input', Shop.fetch);
 
 //EventListenery
 document.querySelector("body > nav > div:nth-child(3) > div.button").addEventListener('click', () => logOut())
