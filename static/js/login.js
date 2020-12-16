@@ -30,6 +30,7 @@ $('#loginSubmit').click(function (e) {
             Login.hide()
             loggedIn();
             document.getElementById('my_id').value = data.id;
+            window.location.reload()
         },
         error: function (data) {
             let err = JSON.parse(data.responseText);
